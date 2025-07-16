@@ -7,4 +7,19 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
+  <component name="SwiftPackageManagerSettings">
+    <option name="linkedExternalProjectsSettings">
+      <SwiftPackageManagerProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/iosApp" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/iosApp" />
+          </set>
+        </option>
+      </SwiftPackageManagerProjectSettings>
+    </option>
+  </component>
+  <component name="SwiftPackageManagerWorkspace" PROJECT_DIR="$PROJECT_DIR$/iosApp">
+    <contentRoot DIR="$PROJECT_DIR$" />
+  </component>
 </project>
