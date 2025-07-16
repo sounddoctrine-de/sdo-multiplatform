@@ -1,5 +1,5 @@
-# Xcode
-# Build, test, and archive an Xcode workspace on macOS.
+# Kotlin Multiplatform iOS App
+# Build, test, and archive the iOS app from the Kotlin Multiplatform project on macOS.
 # Add steps that install certificates, test, sign, and distribute an app, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/xcode
 
@@ -13,8 +13,8 @@ steps:
 - task: Xcode@5
   inputs:
     actions: 'build'
-    scheme: 'SDO (iOS)'
+    scheme: 'iosApp'
     sdk: 'iphoneos'
     configuration: 'Release'
-    xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
+    xcWorkspacePath: 'SDOMultiplatform/iosApp/iosApp.xcodeproj'
     xcodeVersion: 'default' # Options: 11, 12, 13, 14, 15, default, specifyPath
