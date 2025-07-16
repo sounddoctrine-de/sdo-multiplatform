@@ -67,52 +67,11 @@
 		F1F010032800AF10005DC240 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		F17D6F4D2DF0AFA100E3FDBE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				NotAvailableView.swift,
-			);
-			target = F1F00FEF2800AF10005DC240 /* SDO (macOS) */;
-		};
-		F17D6FD32DF0AFA500E3FDBE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Presentation/Authenticated/Components/Views/VideoPlayerView/SDOVideoPlayer.swift,
-				Presentation/Authenticated/Components/Views/VideoPlayerView/VideoPlayerViewModel.swift,
-				Presentation/Authenticated/Components/Views/VideoThumbnail/ThumbnailableVideo.swift,
-				Presentation/Authenticated/Tabs/ChannelsTab/Screens/ChannelDetail/ChannelDetailView.swift,
-				Presentation/Authenticated/Tabs/ChannelsTab/Screens/ChannelDetail/ChannelDetailViewModel.swift,
-				Presentation/Authenticated/Tabs/HomeTab/Components/HomeVideosRow.swift,
-				Presentation/Authenticated/Tabs/HomeTab/Components/VideoThumbnailsRowViewModel.swift,
-				Presentation/Authenticated/Tabs/HomeTab/VideoDetail/VideoDetailView.swift,
-				Presentation/Authenticated/Tabs/HomeTab/VideoDetail/VideoDetailViewModel.swift,
-				"Presentation/Extensions+AVPlayer.swift",
-			);
-			target = F1F00FEF2800AF10005DC240 /* SDO (macOS) */;
-		};
-		F17D70FE2DF0B00000E3FDBE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				UseCases/Channel/FilterChannelsUseCase.swift,
-			);
-			target = F1F00FEF2800AF10005DC240 /* SDO (macOS) */;
-		};
-		F17D711F2DF0B00B00E3FDBE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Models/AuthState.swift,
-				Models/SDOUser.swift,
-			);
-			target = F1F00FEF2800AF10005DC240 /* SDO (macOS) */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5D733EC22DF5D38A00DB4823 /* SDOTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SDOTests; sourceTree = "<group>"; };
 		F17D6F462DF0AF9B00E3FDBE /* Tests iOS */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Tests iOS"; sourceTree = "<group>"; };
-		F17D6F4B2DF0AFA100E3FDBE /* macOS */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F17D6F4D2DF0AFA100E3FDBE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = macOS; sourceTree = "<group>"; };
-		F17D6F9B2DF0AFA500E3FDBE /* iOS */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F17D6FD32DF0AFA500E3FDBE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = iOS; sourceTree = "<group>"; };
+		F17D6F4B2DF0AFA100E3FDBE /* macOS */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = macOS; sourceTree = "<group>"; };
+		F17D6F9B2DF0AFA500E3FDBE /* iOS */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = iOS; sourceTree = "<group>"; };
 		F17D6FDF2DF0AFAE00E3FDBE /* Presentation */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Presentation; sourceTree = "<group>"; };
 		F17D6FEE2DF0AFB100E3FDBE /* Application */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Application; sourceTree = "<group>"; };
 		F17D6FF92DF0AFB400E3FDBE /* Helpers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Helpers; sourceTree = "<group>"; };
@@ -121,8 +80,8 @@
 		F17D705F2DF0AFC300E3FDBE /* Mocks */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Mocks; sourceTree = "<group>"; };
 		F17D70622DF0AFE000E3FDBE /* Lottie */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Lottie; sourceTree = "<group>"; };
 		F17D70632DF0AFF300E3FDBE /* String */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = String; sourceTree = "<group>"; };
-		F17D70A32DF0B00000E3FDBE /* Domain */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F17D70FE2DF0B00000E3FDBE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Domain; sourceTree = "<group>"; };
-		F17D71102DF0B00A00E3FDBE /* Auth */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F17D711F2DF0B00B00E3FDBE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Auth; sourceTree = "<group>"; };
+		F17D70A32DF0B00000E3FDBE /* Domain */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Domain; sourceTree = "<group>"; };
+		F17D71102DF0B00A00E3FDBE /* Auth */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Auth; sourceTree = "<group>"; };
 		F17D71222DF0B01800E3FDBE /* Tests macOS */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Tests macOS"; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
