@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jetbrains.compose.components:components-resources-android:1.8.2@aar" external-system-id="GRADLE">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/8.13/transforms/fb53106f59314ea0e3d7cbc59184863c/transformed/library-release/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/8.13/transforms/fb53106f59314ea0e3d7cbc59184863c/transformed/library-release/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.compose.components/components-resources-android/1.8.2/b04f3ee8f5e43fa3b162981b50bb72fe1acabb33/components-resources-android-1.8.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.compose.components/components-resources-android/1.8.2/165003ca68d80c12b29c5ed91a76f8d429d158ee/library-android-1.8.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

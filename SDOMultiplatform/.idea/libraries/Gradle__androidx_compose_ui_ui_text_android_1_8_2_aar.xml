@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: androidx.compose.ui:ui-text-android:1.8.2@aar" external-system-id="GRADLE">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/8.13/transforms/ffd7734333004480583160bdfd0cb439/transformed/ui-text-release/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/8.13/transforms/ffd7734333004480583160bdfd0cb439/transformed/ui-text-release/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/8.13/transforms/ffd7734333004480583160bdfd0cb439/transformed/ui-text-release/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.compose.ui/ui-text-android/1.8.2/2e79f1b3c583489e3bbcf27f676254fc28e7ad16/ui-text-1.8.2-samples-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.compose.ui/ui-text-android/1.8.2/778af281269418e3884f057149dac9fdf7f3da58/ui-text-android-1.8.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

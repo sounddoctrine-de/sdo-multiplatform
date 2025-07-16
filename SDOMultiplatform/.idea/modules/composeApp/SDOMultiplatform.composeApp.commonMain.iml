@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":composeApp:commonMain" external.linked.project.path="$MODULE_DIR$/../../../composeApp" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="SDOMultiplatform" external.system.module.type="sourceSet" external.system.module.version="unspecified" type="CIDR_MODULE" version="4">
+  <component name="FacetManager">
+    <facet external-system-id="GRADLE" type="kotlin-language" name="Kotlin">
+      <configuration version="5" platform="Common (experimental) " allPlatforms="JVM [11]/wasm-js [JS]" useProjectSettings="false" isTestModule="false" externalProjectId=":composeApp" isHmppProject="true">
+        <newMppModelJpsModuleKind>SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
+        <compilerSettings />
+        <compilerArguments>
+          <flagArguments>
+            <flagArg name="multiPlatform" arg="true" />
+          </flagArguments>
+          <stringArguments>
+            <stringArg name="apiVersion" arg="2.2" />
+            <stringArg name="languageVersion" arg="2.2" />
+          </stringArguments>
+          <arrayArguments>
+            <arrayArg name="pluginClasspaths">
+              <args>
+                <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-compose-compiler-plugin-embeddable/2.2.0/416815567baaba38c3018b4f6f259d30b5edf12c/kotlin-compose-compiler-plugin-embeddable-2.2.0.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-jvm/2.2.0/be40e3d9642c5b56f0bd89bb9acde8eaa3f44ceb/kotlin-scripting-jvm-2.2.0.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-common/2.2.0/4a3c3ff442adc43fe4e96c72514937753875ae2c/kotlin-scripting-common-2.2.0.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/2.2.0/fdfc65fbc42fda253a26f61dac3c0aca335fae96/kotlin-stdlib-2.2.0.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-script-runtime/2.2.0/87c92e866fcd68680966a3005a2992e1ab8ec6ad/kotlin-script-runtime-2.2.0.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar</arg>
+              </args>
+            </arrayArg>
+            <arrayArg name="pluginOptions">
+              <args>plugin:androidx.compose.compiler.plugins.kotlin:traceMarkersEnabled=true</args>
+            </arrayArg>
+          </arrayArguments>
+        </compilerArguments>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../composeApp/build/generated/compose/resourceGenerator/kotlin/commonMainResourceAccessors">
+      <sourceFolder url="file://$MODULE_DIR$/../../../composeApp/build/generated/compose/resourceGenerator/kotlin/commonMainResourceAccessors" type="kotlin-source" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../composeApp/build/generated/compose/resourceGenerator/kotlin/commonMainResourceCollectors">
+      <sourceFolder url="file://$MODULE_DIR$/../../../composeApp/build/generated/compose/resourceGenerator/kotlin/commonMainResourceCollectors" type="kotlin-source" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../composeApp/build/generated/compose/resourceGenerator/kotlin/commonResClass">
+      <sourceFolder url="file://$MODULE_DIR$/../../../composeApp/build/generated/compose/resourceGenerator/kotlin/commonResClass" type="kotlin-source" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../composeApp/src/commonMain">
+      <sourceFolder url="file://$MODULE_DIR$/../../../composeApp/src/commonMain/kotlin" type="kotlin-source" />
+    </content>
+    <orderEntry type="jdk" jdkName="Kotlin SDK" jdkType="KotlinSDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="SDOMultiplatform.shared.commonMain" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:commonMain:2.2.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.compose.runtime:runtime:commonMain:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.compose.foundation:foundation:commonMain:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.compose.material3:material3:commonMain:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.compose.ui:ui:commonMain:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.compose.components:components-resources:commonMain:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.compose.components:components-ui-tooling-preview:commonMain:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.androidx.lifecycle:lifecycle-viewmodel:commonMain:2.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose:commonMain:2.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.compose.annotation-internal:annotation:commonMain:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core:commonMain:1.10.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.compose.animation:animation:commonMain:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.compose.foundation:foundation-layout:commonMain:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.compose.ui:ui-text:commonMain:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.compose.ui:ui-util:commonMain:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.compose.animation:animation-core:commonMain:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.compose.material:material-ripple:commonMain:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.compose.ui:ui-graphics:commonMain:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.androidx.lifecycle:lifecycle-common:commonMain:2.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.androidx.lifecycle:lifecycle-runtime:commonMain:2.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.compose.runtime:runtime-saveable:commonMain:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.compose.ui:ui-geometry:commonMain:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.compose.ui:ui-unit:commonMain:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.annotation:annotation:commonMain:1.9.1" level="project" />
+  </component>
+</module>

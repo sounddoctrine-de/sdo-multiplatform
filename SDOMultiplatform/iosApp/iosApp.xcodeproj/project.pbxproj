@@ -6,6 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5D764A722E2813BF003AC9AB /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 5D764A712E2813BF003AC9AB /* Apollo */; };
+		5D764B522E2815C1003AC9AB /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5D764B512E2815C1003AC9AB /* FirebaseAnalytics */; };
+		5D764B542E2815C1003AC9AB /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5D764B532E2815C1003AC9AB /* FirebaseAuth */; };
+		5D764B562E2815C1003AC9AB /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5D764B552E2815C1003AC9AB /* FirebaseDatabase */; };
+		5D764B582E2815C1003AC9AB /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 5D764B572E2815C1003AC9AB /* FirebaseRemoteConfig */; };
+		5D764B5A2E2815C1003AC9AB /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5D764B592E2815C1003AC9AB /* FirebaseStorage */; };
+		5D764B5D2E28182E003AC9AB /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 5D764B5C2E28182E003AC9AB /* GoogleSignIn */; };
+		5D764B5F2E28182E003AC9AB /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5D764B5E2E28182E003AC9AB /* GoogleSignInSwift */; };
+		5D764BDD2E2819FB003AC9AB /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 5D764BDC2E2819FB003AC9AB /* ApolloWebSocket */; };
+		5D764BE02E281A82003AC9AB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5D764BDF2E281A82003AC9AB /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		B9DA97B12DC1472C00A4DA20 /* SDOMultiplatform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDOMultiplatform.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -41,17 +54,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D764B522E2815C1003AC9AB /* FirebaseAnalytics in Frameworks */,
+				5D764B542E2815C1003AC9AB /* FirebaseAuth in Frameworks */,
+				5D764B562E2815C1003AC9AB /* FirebaseDatabase in Frameworks */,
+				5D764B5F2E28182E003AC9AB /* GoogleSignInSwift in Frameworks */,
+				5D764BE02E281A82003AC9AB /* Kingfisher in Frameworks */,
+				5D764A722E2813BF003AC9AB /* Apollo in Frameworks */,
+				5D764B582E2815C1003AC9AB /* FirebaseRemoteConfig in Frameworks */,
+				5D764B5A2E2815C1003AC9AB /* FirebaseStorage in Frameworks */,
+				5D764BDD2E2819FB003AC9AB /* ApolloWebSocket in Frameworks */,
+				5D764B5D2E28182E003AC9AB /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D764BDB2E2819FB003AC9AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B9DA97A82DC1472C00A4DA20 = {
 			isa = PBXGroup;
 			children = (
 				B9DA98002DC14AA900A4DA20 /* Configuration */,
 				B9DA97B32DC1472C00A4DA20 /* iosApp */,
+				5D764BDB2E2819FB003AC9AB /* Frameworks */,
 				B9DA97B22DC1472C00A4DA20 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,6 +116,16 @@
 			);
 			name = iosApp;
 			packageProductDependencies = (
+				5D764A712E2813BF003AC9AB /* Apollo */,
+				5D764B512E2815C1003AC9AB /* FirebaseAnalytics */,
+				5D764B532E2815C1003AC9AB /* FirebaseAuth */,
+				5D764B552E2815C1003AC9AB /* FirebaseDatabase */,
+				5D764B572E2815C1003AC9AB /* FirebaseRemoteConfig */,
+				5D764B592E2815C1003AC9AB /* FirebaseStorage */,
+				5D764B5C2E28182E003AC9AB /* GoogleSignIn */,
+				5D764B5E2E28182E003AC9AB /* GoogleSignInSwift */,
+				5D764BDC2E2819FB003AC9AB /* ApolloWebSocket */,
+				5D764BDF2E281A82003AC9AB /* Kingfisher */,
 			);
 			productName = iosApp;
 			productReference = B9DA97B12DC1472C00A4DA20 /* SDOMultiplatform.app */;
@@ -114,6 +155,12 @@
 			);
 			mainGroup = B9DA97A82DC1472C00A4DA20;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				5D764A702E2813BF003AC9AB /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				5D764B502E2815C1003AC9AB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				5D764B5B2E28182E003AC9AB /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				5D764BDE2E281A82003AC9AB /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B9DA97B22DC1472C00A4DA20 /* Products */;
 			projectDirPath = "";
@@ -376,6 +423,94 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5D764A702E2813BF003AC9AB /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.5;
+			};
+		};
+		5D764B502E2815C1003AC9AB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+		5D764B5B2E28182E003AC9AB /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		5D764BDE2E281A82003AC9AB /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5D764A712E2813BF003AC9AB /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D764A702E2813BF003AC9AB /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+		5D764B512E2815C1003AC9AB /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D764B502E2815C1003AC9AB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		5D764B532E2815C1003AC9AB /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D764B502E2815C1003AC9AB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		5D764B552E2815C1003AC9AB /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D764B502E2815C1003AC9AB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		5D764B572E2815C1003AC9AB /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D764B502E2815C1003AC9AB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		5D764B592E2815C1003AC9AB /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D764B502E2815C1003AC9AB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		5D764B5C2E28182E003AC9AB /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D764B5B2E28182E003AC9AB /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		5D764B5E2E28182E003AC9AB /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D764B5B2E28182E003AC9AB /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+		5D764BDC2E2819FB003AC9AB /* ApolloWebSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D764A702E2813BF003AC9AB /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = ApolloWebSocket;
+		};
+		5D764BDF2E281A82003AC9AB /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D764BDE2E281A82003AC9AB /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B9DA97A92DC1472C00A4DA20 /* Project object */;
 }

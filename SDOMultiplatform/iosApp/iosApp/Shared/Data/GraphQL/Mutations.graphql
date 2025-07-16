@@ -1,0 +1,67 @@
+mutation GetVideoUrlData($videoId: String!) {
+  getVideoUrlData(arg1: {videoId: $videoId}) {
+    videoUrl
+  }
+}
+
+mutation UpdateVideoAsLikedByUser($userId: uuid!, $videoId: String!) {
+  insert__User_likedVideos_one(object: {A: $userId, B: $videoId}) {
+    A
+    B
+  }
+  delete__User_dislikedVideos(where: {A: {_eq: $userId}, B: {_eq: $videoId}}) {
+    returning {
+      User {
+        userUuid
+      }
+      Video {
+        id
+      }
+    }
+  }
+}
+
+mutation UpdateVideoAsDislikedByUser($userId: uuid!, $videoId: String!) {
+  insert__User_dislikedVideos_one(object: {A: $userId, B: $videoId}) {
+    A
+    B
+  }
+  delete__User_likedVideos(where: {A: {_eq: $userId}, B: {_eq: $videoId}}) {
+    returning {
+      User {
+        userUuid
+      }
+      Video {
+        id
+      }
+    }
+  }
+}
+
+mutation DeleteVideoLikeStatusForUser($userId: uuid!, $videoId: String!) {
+  delete__User_dislikedVideos(where: {A: {_eq: $userId}, B: {_eq: $videoId}}) {
+    affected_rows
+  }
+  delete__User_likedVideos(where: {A: {_eq: $userId}, B: {_eq: $videoId}}) {
+    affected_rows
+  }
+}
+
+mutation GetAppleIdRefreshToken($code: String!) {
+  getAppleIdRefreshToken(arg1: {code: $code}) {
+    refreshToken
+  }
+}
+
+mutation RevokeAppleIdRefreshToken($refreshToken: String!) {
+  revokeAppleIdRefreshToken(arg1: {refreshToken: $refreshToken}) {
+    isRevoked
+  }
+}
+
+mutation DeleteAllUserData($id: uuid!) {
+  delete_User_by_pk(id: $id) {
+    userEmail
+    userUuid
+  }
+}

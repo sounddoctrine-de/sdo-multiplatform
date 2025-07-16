@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>339443240109-d0v5vs4eqg7s9okddajsh6qbkfh9h6u8.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.339443240109-d0v5vs4eqg7s9okddajsh6qbkfh9h6u8</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBnIxcqUH-7GU6LYgD6gYWzE57g6-NDzFo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>339443240109</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>online.sounddoctrine.sdo-apple</string>
+	<key>PROJECT_ID</key>
+	<string>sound-doctrine-online-com</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sound-doctrine-online-com.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:339443240109:ios:c540a8218db4501ff5ca24</string>
+	<key>DATABASE_URL</key>
+	<string>https://sound-doctrine-online-com-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
