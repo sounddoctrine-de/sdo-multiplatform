@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ComposeApp
 
 extension GetUserDataQuery.Data {
     func toEntity() throws -> UserData {

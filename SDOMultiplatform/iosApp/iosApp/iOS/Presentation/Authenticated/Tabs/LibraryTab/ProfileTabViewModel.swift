@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import ComposeApp
 
 @MainActor
 class ProfileTabViewModel: ObservableObject {

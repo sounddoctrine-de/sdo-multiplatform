@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseAuth
+import ComposeApp
 
 extension Key: CaseIterable {
     static var allCases: [Key] {

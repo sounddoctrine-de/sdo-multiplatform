@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ComposeApp
 
 class GetUserDataUseCase {
     let userRepository: UserRepository

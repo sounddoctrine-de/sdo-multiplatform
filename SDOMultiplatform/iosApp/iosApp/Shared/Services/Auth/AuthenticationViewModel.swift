@@ -9,6 +9,7 @@ import Foundation
 import FirebaseAuth
 import Combine
 import AuthenticationServices
+import ComposeApp
 
 /// A class conforming to `ObservableObject` used to represent a user's authentication status.
 @MainActor

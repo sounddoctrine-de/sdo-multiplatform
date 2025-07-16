@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ComposeApp
 
 /**
  Repository that performs operations related to users

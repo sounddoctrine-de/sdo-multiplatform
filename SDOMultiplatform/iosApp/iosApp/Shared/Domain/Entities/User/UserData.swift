@@ -7,12 +7,6 @@
 
 import Foundation
 
-struct UserData {
-    let id: String
-    let userUuid: String
-    let userEmail: String
-}
-
 struct DeleteAllUserData {
     let userEmail: String
     let userUuid: String
