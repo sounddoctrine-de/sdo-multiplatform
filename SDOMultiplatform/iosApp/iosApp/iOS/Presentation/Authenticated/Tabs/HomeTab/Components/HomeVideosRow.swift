@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ComposeApp
 
 struct HomeVideosRow: View {
     let title: LocalizedStringKey
@@ -31,7 +32,7 @@ struct HomeVideosRow: View {
                         .font(.sdoTitle2)
                         .bold()
                     Spacer()
-                    NavigationLink(destination: SearchResultView(ofItemType: showAllItemType, language: LanguageData()), isActive: $showResultView) {
+                    NavigationLink(destination: SearchResultView(ofItemType: showAllItemType, language: LanguageData(languageCode: "", sourceCountryFlag: "")), isActive: $showResultView) {
                         Text("homeShowAllLabel")
                             .padding(.trailing, 20)
                     }

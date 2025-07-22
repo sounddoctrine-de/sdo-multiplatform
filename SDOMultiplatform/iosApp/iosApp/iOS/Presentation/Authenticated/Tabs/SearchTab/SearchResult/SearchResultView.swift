@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ComposeApp
 
 struct SearchResultView: View {
     @EnvironmentObject var authViewModel: AuthenticationViewModel
@@ -93,6 +94,6 @@ struct SearchResultView: View {
 
 struct SearchResultView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResultView(ofItemType: .all, language: LanguageData())
+        SearchResultView(ofItemType: .all, language: LanguageData.Companion().invoke())
     }
 }

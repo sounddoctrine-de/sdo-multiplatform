@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ComposeApp
 
 let exampleVideo1 = HomeScreenData.HomeVideo(
     videoId: "dummy1",

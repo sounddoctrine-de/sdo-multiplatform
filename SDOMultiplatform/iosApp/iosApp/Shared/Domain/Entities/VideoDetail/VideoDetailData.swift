@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ComposeApp
 
 struct VideoDetailData {
     struct SpeakerData {

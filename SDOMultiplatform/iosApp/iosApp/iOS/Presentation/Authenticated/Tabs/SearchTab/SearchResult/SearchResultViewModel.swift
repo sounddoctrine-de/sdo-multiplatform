@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import ComposeApp
 
 @MainActor
 class SearchResultViewModel: ObservableObject {
@@ -77,7 +78,7 @@ class SearchResultViewModel: ObservableObject {
             switch await getAllLanguagesUseCase.execute() {
             case let .success(data):
                 self.allLanguages = [
-                    LanguageData()
+                    LanguageData.Companion().invoke()
                 ]
                 self.allLanguages.append(contentsOf: data)
             default:

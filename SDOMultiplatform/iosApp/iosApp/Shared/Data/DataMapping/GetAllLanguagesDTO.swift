@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ComposeApp
 
 extension GetAllLanguagesQuery.Data {
     func toEntity() -> [LanguageData] {

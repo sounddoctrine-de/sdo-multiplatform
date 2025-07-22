@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ComposeApp
 
 extension GetVideoDetailDataQuery.Data {
     func toEntity() throws -> VideoDetailData.InfoData {

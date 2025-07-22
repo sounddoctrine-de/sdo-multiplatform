@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ComposeApp
 
 @MainActor
 class SearchTabViewModel: ObservableObject {

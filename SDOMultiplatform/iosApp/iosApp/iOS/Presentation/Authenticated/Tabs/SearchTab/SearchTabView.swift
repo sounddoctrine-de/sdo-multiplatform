@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ComposeApp
 
 struct SearchTabView: View {
     @EnvironmentObject var authViewModel: AuthenticationViewModel
@@ -27,7 +28,7 @@ struct SearchTabView: View {
             if searchTabViewModel.onPageLoaded {
                 ScrollView {
                     NavigationLink(
-                        destination: SearchResultView(ofItemType: .all, searchText: searchText, language: LanguageData()),
+                        destination: SearchResultView(ofItemType: .all, searchText: searchText, language: LanguageData.Companion().invoke()),
                         isActive: $showAllResultView) {
                             EmptyView()
                         }
@@ -44,7 +45,7 @@ struct SearchTabView: View {
                         VStack {
                             HStack {
                                 NavigationLink(
-                                    destination: SearchResultView(ofItemType: .sermons, language: LanguageData()),
+                                    destination: SearchResultView(ofItemType: .sermons, language: LanguageData.Companion().invoke()),
                                     isActive: $showSermonsResultView) {
                                     TileButton(text: "searchSermonsButtonLabel", imageName: "sermons") {
                                         showSermonsResultView = true
@@ -52,7 +53,7 @@ struct SearchTabView: View {
                                 }
                                 Spacer()
                                 NavigationLink(
-                                    destination: SearchResultView(ofItemType: .documentaries, language: LanguageData()),
+                                    destination: SearchResultView(ofItemType: .documentaries, language: LanguageData.Companion().invoke()),
                                     isActive: $showDocumentariesResultView) {
                                     TileButton(text: "searchDocumentariesButtonLabel", imageName: "documentaries") {
                                         showDocumentariesResultView = true
@@ -62,7 +63,7 @@ struct SearchTabView: View {
                             .padding(.horizontal, 10)
                             HStack {
                                 NavigationLink(
-                                    destination: SearchResultView(ofItemType: .shorts, language: LanguageData()),
+                                    destination: SearchResultView(ofItemType: .shorts, language: LanguageData.Companion().invoke()),
                                     isActive: $showShortsResultView) {
                                     TileButton(text: "searchShortsButtonLabel", imageName: "shorts") {
                                         showShortsResultView = true
@@ -70,7 +71,7 @@ struct SearchTabView: View {
                                 }
                                 Spacer()
                                 NavigationLink(
-                                    destination: SearchResultView(ofItemType: .music, language: LanguageData()),
+                                    destination: SearchResultView(ofItemType: .music, language: LanguageData.Companion().invoke()),
                                     isActive: $showMusicResultView) {
                                     TileButton(text: "searchMusicButtonLabel", imageName: "music") {
                                         showMusicResultView = true
@@ -80,7 +81,7 @@ struct SearchTabView: View {
                             .padding(.horizontal, 10)
                             HStack {
                                 NavigationLink(
-                                    destination: SearchResultView(ofItemType: .interviews, language: LanguageData()),
+                                    destination: SearchResultView(ofItemType: .interviews, language: LanguageData.Companion().invoke()),
                                     isActive: $showInterviewsResultView) {
                                     TileButton(text: "searchInterviewsButtonLabel", imageName: "interviews") {
                                         showInterviewsResultView = true
