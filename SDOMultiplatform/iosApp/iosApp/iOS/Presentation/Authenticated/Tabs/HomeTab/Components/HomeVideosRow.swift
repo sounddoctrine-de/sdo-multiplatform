@@ -17,6 +17,7 @@ struct HomeVideosRow: View {
     
     @State var thumbnailWidth: CGFloat = 0
     @State var showResultView: Bool = false
+    @Binding var path: NavigationPath
     
     var body: some View {
         ZStack {
@@ -32,7 +33,7 @@ struct HomeVideosRow: View {
                         .font(.sdoTitle2)
                         .bold()
                     Spacer()
-                    NavigationLink(destination: SearchResultView(ofItemType: showAllItemType, language: LanguageData(languageCode: "", sourceCountryFlag: "")), isActive: $showResultView) {
+                    NavigationLink(value: showAllItemType) {
                         Text("homeShowAllLabel")
                             .padding(.trailing, 20)
                     }
@@ -42,10 +43,7 @@ struct HomeVideosRow: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(videos) { video in
-                            NavigationLink(destination: VideoDetailView(
-                                videoId: video.videoId,
-                                channelId: video.channelId
-                            )) {
+                            NavigationLink(value: video) {
                                 VStack {
                                     VideoThumbnail(video: video, style: videoThumbnailStyle, thumbnailWidth: $thumbnailWidth)
                                     Group {
@@ -78,6 +76,13 @@ struct HomeVideosRow: View {
                 }
             }
         }
+        .navigationDestination(for: HomeScreenData.HomeVideo.self) { video in
+            VideoDetailView(
+                videoId: video.videoId,
+                channelId: video.channelId,
+                path: $path
+            )
+        }
     }
 }
 
@@ -87,7 +92,8 @@ struct HomeVideosRow_Previews: PreviewProvider {
             title: "",
             videoThumbnailStyle: .small,
             videos: [exampleVideo1, exampleVideo2],
-            showAllItemType: .documentaries
+            showAllItemType: .documentaries,
+            path: Binding.constant(NavigationPath())
         )
     }
 }

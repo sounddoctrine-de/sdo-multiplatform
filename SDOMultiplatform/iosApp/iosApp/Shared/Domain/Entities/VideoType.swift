@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum VideoType: String, Equatable {
+enum VideoType: String, Equatable, Hashable {
     case sermon = "videoDetailVideoTypeSermon"
     case documentary = "videoDetailVideoTypeDocumentary"
     case short = "videoDetailVideoTypeShort"

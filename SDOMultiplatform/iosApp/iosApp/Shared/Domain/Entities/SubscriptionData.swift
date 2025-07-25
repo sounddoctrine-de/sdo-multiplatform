@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct SubscriptionData {
+struct SubscriptionData: Hashable {
     let subscriptionId: String
     let subscriptionName: String
     let subscriptionCost: Double

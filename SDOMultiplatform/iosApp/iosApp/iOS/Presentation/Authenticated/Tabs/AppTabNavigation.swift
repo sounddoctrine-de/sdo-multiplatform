@@ -19,11 +19,16 @@ struct AppTabNavigation: View {
     @Binding var isNavigationBarHidden: Bool
     @State private var selection: Tab = .Home
     
+    @State private var homeTabNavigationPath = NavigationPath()
+    @State private var searchTabNavigationPath = NavigationPath()
+    @State private var channelsTabNavigationPath = NavigationPath()
+    @State private var libraryTabNavigationPath = NavigationPath()
+    
     var body: some View {
         TabView(selection: $selection) {
             // Home Tab
-            NavigationView {
-                HomeTabView()
+            NavigationStack(path: $homeTabNavigationPath) {
+                HomeTabView(path: $homeTabNavigationPath)
             }
             .tabItem {
                 Label("homeTabLabel", systemImage: "house.fill")
@@ -36,8 +41,8 @@ struct AppTabNavigation: View {
             }
 
             // Search Tab
-            NavigationView {
-                SearchTabView(tabSelection: $selection)
+            NavigationStack(path: $searchTabNavigationPath) {
+                SearchTabView(tabSelection: $selection, path: $searchTabNavigationPath)
             }
             .tabItem {
                 Label("searchTabLabel", systemImage: "magnifyingglass")
@@ -50,15 +55,15 @@ struct AppTabNavigation: View {
             }
 
             // Channels Tab
-            NavigationView {
-                ChannelsTabView()
+            NavigationStack(path: $channelsTabNavigationPath) {
+                ChannelsTabView(path: $channelsTabNavigationPath)
             }.tabItem {
                 Label("channelsTabLabel", systemImage: "rectangle.stack.badge.play.fill")
                     .accessibilityLabel("channelsTabLabel")
             }.tag(Tab.Channels)
 
             // Profile Tab
-            NavigationView {
+            NavigationStack(path: $libraryTabNavigationPath) {
                 ProfileTabView()
             }.tabItem {
                 Label("profileTabLabel", systemImage: "play.rectangle.on.rectangle.fill")

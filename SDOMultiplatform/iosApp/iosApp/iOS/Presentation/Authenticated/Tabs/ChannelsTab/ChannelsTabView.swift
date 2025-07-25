@@ -13,24 +13,21 @@ struct ChannelsTabView: View {
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     @State var isShowingSearchSheet = false
 
-    @State var selectedChannelIdForShowDetail: String?
-    @State var showChannelDetail: Bool = false
+    @Binding var path: NavigationPath
 
     var body: some View {
         switch channelsTabViewModel.channelsData {
         case .success:
             ZStack {
-                NavigationLink(isActive: $showChannelDetail) {
-                    ChannelDetailView(channelId: selectedChannelIdForShowDetail)
-                } label: {
-                    EmptyView()
-                }
-
                 MapView(
                     channelsTabViewModel: channelsTabViewModel,
-                    showChannelDetail: $showChannelDetail,
-                    selectedChannelIdForShowDetail: $selectedChannelIdForShowDetail
+                    onChannelSelected: { channel in
+                        path.append(channel)
+                    }
                 )
+                .navigationDestination(for: ChannelData.self) { channel in
+                    ChannelDetailView(channelId: channel.channelId)
+                }
                 
                 VStack {
                     Spacer()
@@ -88,6 +85,13 @@ struct ChannelsTabView: View {
             .navigationBarTitle(
                 Text("channelsScreenTitle", comment: "Label: Navigation bar title of Subscriptions Screen")
             )
+            .navigationDestination(for: ChannelDetailData.Video.self) { video in
+                VideoDetailView(
+                    videoId: video.videoId,
+                    channelId: video.channelId,
+                    path: $path
+                )
+            }
         case .failure(let error):
             CustomErrorView(
                 error: error,
@@ -106,6 +110,6 @@ struct ChannelsTabView: View {
 
 struct ChannelsTabView_Previews: PreviewProvider {
     static var previews: some View {
-        ChannelsTabView()
+        ChannelsTabView(path: Binding.constant(NavigationPath()))
     }
 }

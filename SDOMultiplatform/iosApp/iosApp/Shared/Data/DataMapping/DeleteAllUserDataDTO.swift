@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ComposeApp
 
 extension DeleteAllUserDataMutation.Data {
     func toEntity() throws -> DeleteAllUserData {

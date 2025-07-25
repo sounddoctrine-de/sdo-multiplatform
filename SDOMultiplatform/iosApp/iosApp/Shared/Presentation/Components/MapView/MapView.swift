@@ -11,8 +11,8 @@ import Combine
 
 struct MapView: UIViewRepresentable {
     @ObservedObject var channelsTabViewModel: ChannelsTabViewModel
-    @Binding var showChannelDetail: Bool
-    @Binding var selectedChannelIdForShowDetail: String?
+    
+    var onChannelSelected: (ChannelData) -> Void
     
     // Create the MKMapView using UIKit
     func makeUIView(context: Context) -> MKMapView {

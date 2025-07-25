@@ -12,6 +12,7 @@ struct MoreVideosInChannelRow: View {
     let videos: [VideoDetailData.RelatedVideo]
     @State var thumbnailWidth: CGFloat = 0
     let videoThumbnailsRowViewModel = VideoThumbnailsRowViewModel()
+    @Binding var path: NavigationPath
     
     var body: some View {
         VStack {
@@ -26,9 +27,7 @@ struct MoreVideosInChannelRow: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(videos) { video in
-                        NavigationLink {
-                            VideoDetailView(videoId: video.videoId, channelId: video.channelId)
-                        } label: {
+                        NavigationLink(value: video) {
                             VStack {
                                 VideoThumbnail(video: video, style: .small, thumbnailWidth: $thumbnailWidth)
                                 Group {
@@ -60,6 +59,9 @@ struct MoreVideosInChannelRow: View {
                 .padding(.leading, 20)
             }
         }
+        .navigationDestination(for: VideoDetailData.RelatedVideo.self) { video in
+            VideoDetailView(videoId: video.videoId, channelId: video.channelId, path: $path)
+        }
     }
 }
 
@@ -67,7 +69,8 @@ struct MoreVideosInChannelRow_Previews: PreviewProvider {
     static var previews: some View {
         MoreVideosInChannelRow(
             channelName: exampleVideoDetail1.channelName,
-            videos: exampleVideoDetail1.infoData.moreVideosInChannel
+            videos: exampleVideoDetail1.infoData.moreVideosInChannel,
+            path: Binding.constant(NavigationPath())
         )
     }
 }

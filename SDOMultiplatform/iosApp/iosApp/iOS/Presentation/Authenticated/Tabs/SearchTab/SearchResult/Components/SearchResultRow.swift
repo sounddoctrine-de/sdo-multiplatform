@@ -10,11 +10,10 @@ import SwiftUI
 struct SearchResultRow: View {
     let video: SearchResultData.Video
     @State var thumbnailWidth: CGFloat = 0
+    @Binding var path: NavigationPath
     
     var body: some View {
-        NavigationLink {
-            VideoDetailView(videoId: video.videoId, channelId: video.channelId)
-        } label: {
+        NavigationLink(value: video) {
             HStack {
                 VideoThumbnail(video: video, style: .xsmall, thumbnailWidth: $thumbnailWidth)
                     .frame(width: thumbnailWidth)
@@ -53,6 +52,6 @@ struct SearchResultRow_Previews: PreviewProvider {
             speakerName: exampleVideo1.speakerName,
             videoType: .documentary,
             thumbnailURL: exampleVideo1.thumbnailURL
-        ))
+        ), thumbnailWidth: 0, path: Binding.constant(NavigationPath()))
     }
 }

@@ -10,9 +10,11 @@ import SwiftUI
 struct VideoDetailView: View {
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     @ObservedObject var videoDetailViewModel: VideoDetailViewModel
+    @Binding var path: NavigationPath
     
-    init(videoId: String, channelId: String) {
+    init(videoId: String, channelId: String, path: Binding<NavigationPath>) {
         self.videoDetailViewModel = VideoDetailViewModel(videoId: videoId, channelId: channelId)
+        self._path = path
         AppLogger.initLog()
     }
 
@@ -30,7 +32,8 @@ struct VideoDetailView: View {
                         if !data.infoData.moreVideosInChannel.isEmpty {
                             MoreVideosInChannelRow(
                                 channelName: data.infoData.channel.channelName,
-                                videos: data.infoData.moreVideosInChannel
+                                videos: data.infoData.moreVideosInChannel,
+                                path: $path
                             )
                         }
 
@@ -59,6 +62,6 @@ struct VideoDetailView: View {
 
 struct VideoDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        VideoDetailView(videoId: "", channelId: "")
+        VideoDetailView(videoId: "", channelId: "", path: Binding.constant(NavigationPath()))
     }
 }

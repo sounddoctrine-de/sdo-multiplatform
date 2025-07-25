@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ComposeApp
 
 class DeleteAllUserDataUseCase {
     let userRepository: UserRepository
