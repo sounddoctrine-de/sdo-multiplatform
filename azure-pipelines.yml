@@ -4,6 +4,9 @@ trigger:
 pool:
   vmImage: 'macos-latest'
 
+variables:
+- group: appstoreconnect
+
 steps:
 - task: UseRubyVersion@0
   inputs:
