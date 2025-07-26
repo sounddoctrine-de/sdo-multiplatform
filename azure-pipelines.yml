@@ -12,6 +12,7 @@ steps:
 
 - script: |
     gem install bundler
+    cd fastlane
     bundle install
   displayName: 'Install Bundler and Gems'
 
