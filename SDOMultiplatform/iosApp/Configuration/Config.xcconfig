@@ -1,4 +1,4 @@
-TEAM_ID=
+TEAM_ID=A5U7V8A368
 
 PRODUCT_NAME=SDOMultiplatform
 PRODUCT_BUNDLE_IDENTIFIER=online.sounddoctrine.sdo_multiplatform.SDOMultiplatform$(TEAM_ID)
