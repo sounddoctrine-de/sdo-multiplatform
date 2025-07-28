@@ -66,6 +66,33 @@ This repository contains two main projects:
 5. **Build and run:**
    - Click the ▶️ (Run) button in Xcode, or press `Cmd+R`.
 
+
+### Environment Variables (Xcode Project)
+
+To provide local environment variables (such as API endpoints or keys) to the Xcode project, create a `UserEnvironmentVariables.plist` file:
+
+1. **Location:**
+   - `iosApp.xcodeproj/xcuserdata/<your-username>.xcuserdatad/UserEnvironmentVariables.plist`
+2. **Format:**
+   - The file should be a property list (`.plist`) with each variable as a key-value pair. Example:
+
+     ```xml
+     <?xml version="1.0" encoding="UTF-8"?>
+     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+     <plist version="1.0">
+     <dict>
+         <key>HASURA_ENDPOINT</key>
+         <string>https://sdo-prod.hasura.app/v1/graphql</string>
+         <key>HASURA_ACCESS_KEY</key>
+         <string>YOUR_ACCESS_KEY_HERE</string>
+     </dict>
+     </plist>
+     ```
+3. **Notes:**
+   - This file is user-specific and should not be committed to version control.
+   - Add any required environment variables for your local development.
+
+---
 ### Notes
 - For iOS, the app supports iOS 16 and above.
 - For macOS, the app supports macOS 11.0 and above.

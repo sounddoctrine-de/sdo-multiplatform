@@ -1344,7 +1344,7 @@ public final class GetHomeScreenDataQuery: GraphQLQuery {
     """
     query GetHomeScreenData {
       documentaries: Video(
-        where: {VideoType: {videoTypeName: {_eq: "documentary"}}}
+        where: {VideoType: {videoTypeName: {_eq: "documentary"}}, VideoStatus: {videoStatusName: {_eq: "Public"}}}
         order_by: {datePublished: desc}
         limit: 15
       ) {
@@ -1371,7 +1371,7 @@ public final class GetHomeScreenDataQuery: GraphQLQuery {
         }
       }
       sermons: Video(
-        where: {VideoType: {videoTypeName: {_eq: "sermon"}}}
+        where: {VideoType: {videoTypeName: {_eq: "sermon"}}, VideoStatus: {videoStatusName: {_eq: "Public"}}}
         order_by: {datePublished: desc}
         limit: 15
       ) {
@@ -1398,7 +1398,7 @@ public final class GetHomeScreenDataQuery: GraphQLQuery {
         }
       }
       shorts: Video(
-        where: {VideoType: {videoTypeName: {_eq: "short"}}}
+        where: {VideoType: {videoTypeName: {_eq: "short"}}, VideoStatus: {videoStatusName: {_eq: "Public"}}}
         order_by: {datePublished: desc}
         limit: 15
       ) {
@@ -1425,7 +1425,7 @@ public final class GetHomeScreenDataQuery: GraphQLQuery {
         }
       }
       musicVideos: Video(
-        where: {VideoType: {videoTypeName: {_eq: "music"}}}
+        where: {VideoType: {videoTypeName: {_eq: "music"}}, VideoStatus: {videoStatusName: {_eq: "Public"}}}
         order_by: {datePublished: desc}
         limit: 15
       ) {
@@ -1452,7 +1452,7 @@ public final class GetHomeScreenDataQuery: GraphQLQuery {
         }
       }
       interviews: Video(
-        where: {VideoType: {videoTypeName: {_eq: "interview"}}}
+        where: {VideoType: {videoTypeName: {_eq: "interview"}}, VideoStatus: {videoStatusName: {_eq: "Public"}}}
         order_by: {datePublished: desc}
         limit: 15
       ) {
@@ -1491,11 +1491,11 @@ public final class GetHomeScreenDataQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("Video", alias: "documentaries", arguments: ["where": ["VideoType": ["videoTypeName": ["_eq": "documentary"]]], "order_by": ["datePublished": "desc"], "limit": 15], type: .nonNull(.list(.nonNull(.object(Documentary.selections))))),
-        GraphQLField("Video", alias: "sermons", arguments: ["where": ["VideoType": ["videoTypeName": ["_eq": "sermon"]]], "order_by": ["datePublished": "desc"], "limit": 15], type: .nonNull(.list(.nonNull(.object(Sermon.selections))))),
-        GraphQLField("Video", alias: "shorts", arguments: ["where": ["VideoType": ["videoTypeName": ["_eq": "short"]]], "order_by": ["datePublished": "desc"], "limit": 15], type: .nonNull(.list(.nonNull(.object(Short.selections))))),
-        GraphQLField("Video", alias: "musicVideos", arguments: ["where": ["VideoType": ["videoTypeName": ["_eq": "music"]]], "order_by": ["datePublished": "desc"], "limit": 15], type: .nonNull(.list(.nonNull(.object(MusicVideo.selections))))),
-        GraphQLField("Video", alias: "interviews", arguments: ["where": ["VideoType": ["videoTypeName": ["_eq": "interview"]]], "order_by": ["datePublished": "desc"], "limit": 15], type: .nonNull(.list(.nonNull(.object(Interview.selections))))),
+        GraphQLField("Video", alias: "documentaries", arguments: ["where": ["VideoType": ["videoTypeName": ["_eq": "documentary"]], "VideoStatus": ["videoStatusName": ["_eq": "Public"]]], "order_by": ["datePublished": "desc"], "limit": 15], type: .nonNull(.list(.nonNull(.object(Documentary.selections))))),
+        GraphQLField("Video", alias: "sermons", arguments: ["where": ["VideoType": ["videoTypeName": ["_eq": "sermon"]], "VideoStatus": ["videoStatusName": ["_eq": "Public"]]], "order_by": ["datePublished": "desc"], "limit": 15], type: .nonNull(.list(.nonNull(.object(Sermon.selections))))),
+        GraphQLField("Video", alias: "shorts", arguments: ["where": ["VideoType": ["videoTypeName": ["_eq": "short"]], "VideoStatus": ["videoStatusName": ["_eq": "Public"]]], "order_by": ["datePublished": "desc"], "limit": 15], type: .nonNull(.list(.nonNull(.object(Short.selections))))),
+        GraphQLField("Video", alias: "musicVideos", arguments: ["where": ["VideoType": ["videoTypeName": ["_eq": "music"]], "VideoStatus": ["videoStatusName": ["_eq": "Public"]]], "order_by": ["datePublished": "desc"], "limit": 15], type: .nonNull(.list(.nonNull(.object(MusicVideo.selections))))),
+        GraphQLField("Video", alias: "interviews", arguments: ["where": ["VideoType": ["videoTypeName": ["_eq": "interview"]], "VideoStatus": ["videoStatusName": ["_eq": "Public"]]], "order_by": ["datePublished": "desc"], "limit": 15], type: .nonNull(.list(.nonNull(.object(Interview.selections))))),
       ]
     }
 
@@ -2911,7 +2911,9 @@ public final class GetVideoDetailDataQuery: GraphQLQuery {
   public let operationDefinition: String =
     """
     query GetVideoDetailData($videoId: String!, $channelId: String!, $userUuid: String!) {
-      videoDetail: Video(where: {id: {_eq: $videoId}}) {
+      videoDetail: Video(
+        where: {id: {_eq: $videoId}, VideoStatus: {videoStatusName: {_eq: "Public"}}}
+      ) {
         __typename
         id
         title
@@ -2946,7 +2948,7 @@ public final class GetVideoDetailDataQuery: GraphQLQuery {
         }
       }
       moreVideosInChannel: Video(
-        where: {channel: {_eq: $channelId}, id: {_neq: $videoId}}
+        where: {channel: {_eq: $channelId}, id: {_neq: $videoId}, VideoStatus: {videoStatusName: {_eq: "Public"}}}
         limit: 10
       ) {
         __typename
@@ -3009,8 +3011,8 @@ public final class GetVideoDetailDataQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("Video", alias: "videoDetail", arguments: ["where": ["id": ["_eq": GraphQLVariable("videoId")]]], type: .nonNull(.list(.nonNull(.object(VideoDetail.selections))))),
-        GraphQLField("Video", alias: "moreVideosInChannel", arguments: ["where": ["channel": ["_eq": GraphQLVariable("channelId")], "id": ["_neq": GraphQLVariable("videoId")]], "limit": 10], type: .nonNull(.list(.nonNull(.object(MoreVideosInChannel.selections))))),
+        GraphQLField("Video", alias: "videoDetail", arguments: ["where": ["id": ["_eq": GraphQLVariable("videoId")], "VideoStatus": ["videoStatusName": ["_eq": "Public"]]]], type: .nonNull(.list(.nonNull(.object(VideoDetail.selections))))),
+        GraphQLField("Video", alias: "moreVideosInChannel", arguments: ["where": ["channel": ["_eq": GraphQLVariable("channelId")], "id": ["_neq": GraphQLVariable("videoId")], "VideoStatus": ["videoStatusName": ["_eq": "Public"]]], "limit": 10], type: .nonNull(.list(.nonNull(.object(MoreVideosInChannel.selections))))),
         GraphQLField("_User_likedVideos_aggregate", arguments: ["where": ["B": ["_eq": GraphQLVariable("videoId")], "User": ["userUuid": ["_eq": GraphQLVariable("userUuid")]]]], type: .nonNull(.object(_UserLikedVideosAggregate.selections))),
         GraphQLField("_User_dislikedVideos_aggregate", arguments: ["where": ["B": ["_eq": GraphQLVariable("videoId")], "User": ["userUuid": ["_eq": GraphQLVariable("userUuid")]]]], type: .nonNull(.object(_UserDislikedVideosAggregate.selections))),
       ]
@@ -3848,7 +3850,7 @@ public final class GetVideosForSearchTextQuery: GraphQLQuery {
     """
     query GetVideosForSearchText($searchText: String!, $limit: Int!, $offset: Int!) {
       Video(
-        where: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}]}
+        where: {VideoStatus: {videoStatusName: {_eq: "Public"}}, _and: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}]}}
         limit: $limit
         offset: $offset
       ) {
@@ -3875,7 +3877,7 @@ public final class GetVideosForSearchTextQuery: GraphQLQuery {
         thumbnailUrl
       }
       Video_aggregate(
-        where: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}]}
+        where: {VideoStatus: {videoStatusName: {_eq: "Public"}}, _and: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}]}}
       ) {
         __typename
         aggregate {
@@ -3907,8 +3909,8 @@ public final class GetVideosForSearchTextQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("Video", arguments: ["where": ["_or": [["Channel": ["channelName": ["_ilike": GraphQLVariable("searchText")]]], ["title": ["_ilike": GraphQLVariable("searchText")]]]], "limit": GraphQLVariable("limit"), "offset": GraphQLVariable("offset")], type: .nonNull(.list(.nonNull(.object(Video.selections))))),
-        GraphQLField("Video_aggregate", arguments: ["where": ["_or": [["Channel": ["channelName": ["_ilike": GraphQLVariable("searchText")]]], ["title": ["_ilike": GraphQLVariable("searchText")]]]]], type: .nonNull(.object(VideoAggregate.selections))),
+        GraphQLField("Video", arguments: ["where": ["VideoStatus": ["videoStatusName": ["_eq": "Public"]], "_and": ["_or": [["Channel": ["channelName": ["_ilike": GraphQLVariable("searchText")]]], ["title": ["_ilike": GraphQLVariable("searchText")]]]]], "limit": GraphQLVariable("limit"), "offset": GraphQLVariable("offset")], type: .nonNull(.list(.nonNull(.object(Video.selections))))),
+        GraphQLField("Video_aggregate", arguments: ["where": ["VideoStatus": ["videoStatusName": ["_eq": "Public"]], "_and": ["_or": [["Channel": ["channelName": ["_ilike": GraphQLVariable("searchText")]]], ["title": ["_ilike": GraphQLVariable("searchText")]]]]]], type: .nonNull(.object(VideoAggregate.selections))),
       ]
     }
 
@@ -4297,7 +4299,7 @@ public final class GetVideosForSearchTextAndVideoTypeQuery: GraphQLQuery {
     """
     query GetVideosForSearchTextAndVideoType($searchText: String!, $videoType: String!, $limit: Int!, $offset: Int!) {
       Video(
-        where: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], VideoType: {videoTypeName: {_eq: $videoType}}}
+        where: {VideoStatus: {videoStatusName: {_eq: "Public"}}, _and: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], VideoType: {videoTypeName: {_eq: $videoType}}}}
         limit: $limit
         offset: $offset
       ) {
@@ -4324,7 +4326,7 @@ public final class GetVideosForSearchTextAndVideoTypeQuery: GraphQLQuery {
         thumbnailUrl
       }
       Video_aggregate(
-        where: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], VideoType: {videoTypeName: {_eq: $videoType}}}
+        where: {VideoStatus: {videoStatusName: {_eq: "Public"}}, _and: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], VideoType: {videoTypeName: {_eq: $videoType}}}}
       ) {
         __typename
         aggregate {
@@ -4358,8 +4360,8 @@ public final class GetVideosForSearchTextAndVideoTypeQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("Video", arguments: ["where": ["_or": [["Channel": ["channelName": ["_ilike": GraphQLVariable("searchText")]]], ["title": ["_ilike": GraphQLVariable("searchText")]]], "VideoType": ["videoTypeName": ["_eq": GraphQLVariable("videoType")]]], "limit": GraphQLVariable("limit"), "offset": GraphQLVariable("offset")], type: .nonNull(.list(.nonNull(.object(Video.selections))))),
-        GraphQLField("Video_aggregate", arguments: ["where": ["_or": [["Channel": ["channelName": ["_ilike": GraphQLVariable("searchText")]]], ["title": ["_ilike": GraphQLVariable("searchText")]]], "VideoType": ["videoTypeName": ["_eq": GraphQLVariable("videoType")]]]], type: .nonNull(.object(VideoAggregate.selections))),
+        GraphQLField("Video", arguments: ["where": ["VideoStatus": ["videoStatusName": ["_eq": "Public"]], "_and": ["_or": [["Channel": ["channelName": ["_ilike": GraphQLVariable("searchText")]]], ["title": ["_ilike": GraphQLVariable("searchText")]]], "VideoType": ["videoTypeName": ["_eq": GraphQLVariable("videoType")]]]], "limit": GraphQLVariable("limit"), "offset": GraphQLVariable("offset")], type: .nonNull(.list(.nonNull(.object(Video.selections))))),
+        GraphQLField("Video_aggregate", arguments: ["where": ["VideoStatus": ["videoStatusName": ["_eq": "Public"]], "_and": ["_or": [["Channel": ["channelName": ["_ilike": GraphQLVariable("searchText")]]], ["title": ["_ilike": GraphQLVariable("searchText")]]], "VideoType": ["videoTypeName": ["_eq": GraphQLVariable("videoType")]]]]], type: .nonNull(.object(VideoAggregate.selections))),
       ]
     }
 
@@ -4748,7 +4750,7 @@ public final class GetVideosForSearchTextAndLanguageCodeQuery: GraphQLQuery {
     """
     query GetVideosForSearchTextAndLanguageCode($searchText: String!, $languageCode: String!, $limit: Int!, $offset: Int!) {
       Video(
-        where: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], Language: {languageCode: {_eq: $languageCode}}}
+        where: {VideoStatus: {videoStatusName: {_eq: "Public"}}, _and: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], Language: {languageCode: {_eq: $languageCode}}}}
         limit: $limit
         offset: $offset
       ) {
@@ -4775,7 +4777,7 @@ public final class GetVideosForSearchTextAndLanguageCodeQuery: GraphQLQuery {
         thumbnailUrl
       }
       Video_aggregate(
-        where: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], Language: {languageCode: {_eq: $languageCode}}}
+        where: {VideoStatus: {videoStatusName: {_eq: "Public"}}, _and: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], Language: {languageCode: {_eq: $languageCode}}}}
       ) {
         __typename
         aggregate {
@@ -4809,8 +4811,8 @@ public final class GetVideosForSearchTextAndLanguageCodeQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("Video", arguments: ["where": ["_or": [["Channel": ["channelName": ["_ilike": GraphQLVariable("searchText")]]], ["title": ["_ilike": GraphQLVariable("searchText")]]], "Language": ["languageCode": ["_eq": GraphQLVariable("languageCode")]]], "limit": GraphQLVariable("limit"), "offset": GraphQLVariable("offset")], type: .nonNull(.list(.nonNull(.object(Video.selections))))),
-        GraphQLField("Video_aggregate", arguments: ["where": ["_or": [["Channel": ["channelName": ["_ilike": GraphQLVariable("searchText")]]], ["title": ["_ilike": GraphQLVariable("searchText")]]], "Language": ["languageCode": ["_eq": GraphQLVariable("languageCode")]]]], type: .nonNull(.object(VideoAggregate.selections))),
+        GraphQLField("Video", arguments: ["where": ["VideoStatus": ["videoStatusName": ["_eq": "Public"]], "_and": ["_or": [["Channel": ["channelName": ["_ilike": GraphQLVariable("searchText")]]], ["title": ["_ilike": GraphQLVariable("searchText")]]], "Language": ["languageCode": ["_eq": GraphQLVariable("languageCode")]]]], "limit": GraphQLVariable("limit"), "offset": GraphQLVariable("offset")], type: .nonNull(.list(.nonNull(.object(Video.selections))))),
+        GraphQLField("Video_aggregate", arguments: ["where": ["VideoStatus": ["videoStatusName": ["_eq": "Public"]], "_and": ["_or": [["Channel": ["channelName": ["_ilike": GraphQLVariable("searchText")]]], ["title": ["_ilike": GraphQLVariable("searchText")]]], "Language": ["languageCode": ["_eq": GraphQLVariable("languageCode")]]]]], type: .nonNull(.object(VideoAggregate.selections))),
       ]
     }
 
@@ -5199,7 +5201,7 @@ public final class GetVideosForSearchTextVideoTypeAndLanguageCodeQuery: GraphQLQ
     """
     query GetVideosForSearchTextVideoTypeAndLanguageCode($searchText: String!, $videoType: String!, $languageCode: String!, $limit: Int!, $offset: Int!) {
       Video(
-        where: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], Language: {languageCode: {_eq: $languageCode}}, VideoType: {videoTypeName: {_eq: $videoType}}}
+        where: {VideoStatus: {videoStatusName: {_eq: "Public"}}, _and: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], Language: {languageCode: {_eq: $languageCode}}, VideoType: {videoTypeName: {_eq: $videoType}}}}
         limit: $limit
         offset: $offset
       ) {
@@ -5226,7 +5228,7 @@ public final class GetVideosForSearchTextVideoTypeAndLanguageCodeQuery: GraphQLQ
         thumbnailUrl
       }
       Video_aggregate(
-        where: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], VideoType: {videoTypeName: {_eq: $videoType}}, Language: {languageCode: {_eq: $languageCode}}}
+        where: {VideoStatus: {videoStatusName: {_eq: "Public"}}, _and: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], VideoType: {videoTypeName: {_eq: $videoType}}, Language: {languageCode: {_eq: $languageCode}}}}
       ) {
         __typename
         aggregate {
@@ -5262,8 +5264,8 @@ public final class GetVideosForSearchTextVideoTypeAndLanguageCodeQuery: GraphQLQ
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("Video", arguments: ["where": ["_or": [["Channel": ["channelName": ["_ilike": GraphQLVariable("searchText")]]], ["title": ["_ilike": GraphQLVariable("searchText")]]], "Language": ["languageCode": ["_eq": GraphQLVariable("languageCode")]], "VideoType": ["videoTypeName": ["_eq": GraphQLVariable("videoType")]]], "limit": GraphQLVariable("limit"), "offset": GraphQLVariable("offset")], type: .nonNull(.list(.nonNull(.object(Video.selections))))),
-        GraphQLField("Video_aggregate", arguments: ["where": ["_or": [["Channel": ["channelName": ["_ilike": GraphQLVariable("searchText")]]], ["title": ["_ilike": GraphQLVariable("searchText")]]], "VideoType": ["videoTypeName": ["_eq": GraphQLVariable("videoType")]], "Language": ["languageCode": ["_eq": GraphQLVariable("languageCode")]]]], type: .nonNull(.object(VideoAggregate.selections))),
+        GraphQLField("Video", arguments: ["where": ["VideoStatus": ["videoStatusName": ["_eq": "Public"]], "_and": ["_or": [["Channel": ["channelName": ["_ilike": GraphQLVariable("searchText")]]], ["title": ["_ilike": GraphQLVariable("searchText")]]], "Language": ["languageCode": ["_eq": GraphQLVariable("languageCode")]], "VideoType": ["videoTypeName": ["_eq": GraphQLVariable("videoType")]]]], "limit": GraphQLVariable("limit"), "offset": GraphQLVariable("offset")], type: .nonNull(.list(.nonNull(.object(Video.selections))))),
+        GraphQLField("Video_aggregate", arguments: ["where": ["VideoStatus": ["videoStatusName": ["_eq": "Public"]], "_and": ["_or": [["Channel": ["channelName": ["_ilike": GraphQLVariable("searchText")]]], ["title": ["_ilike": GraphQLVariable("searchText")]]], "VideoType": ["videoTypeName": ["_eq": GraphQLVariable("videoType")]], "Language": ["languageCode": ["_eq": GraphQLVariable("languageCode")]]]]], type: .nonNull(.object(VideoAggregate.selections))),
       ]
     }
 
@@ -5663,7 +5665,7 @@ public final class GetChannelDetailQuery: GraphQLQuery {
         locationLong
         regionCode
         websiteUrl
-        videosInChannel: Videos {
+        videosInChannel: Videos(where: {videoStatus: {_eq: "Public"}}) {
           __typename
           id
           title
@@ -5746,7 +5748,7 @@ public final class GetChannelDetailQuery: GraphQLQuery {
           GraphQLField("locationLong", type: .nonNull(.scalar(String.self))),
           GraphQLField("regionCode", type: .nonNull(.scalar(String.self))),
           GraphQLField("websiteUrl", type: .nonNull(.scalar(String.self))),
-          GraphQLField("Videos", alias: "videosInChannel", type: .nonNull(.list(.nonNull(.object(VideosInChannel.selections))))),
+          GraphQLField("Videos", alias: "videosInChannel", arguments: ["where": ["videoStatus": ["_eq": "Public"]]], type: .nonNull(.list(.nonNull(.object(VideosInChannel.selections))))),
         ]
       }
 

@@ -13,7 +13,7 @@ query GetAllChannels {
 }
 
 query GetHomeScreenData {
-  documentaries: Video(where: {VideoType: {videoTypeName: {_eq: "documentary"}}}, order_by: {datePublished: desc}, limit: 15) {
+  documentaries: Video(where: {VideoType: {videoTypeName: {_eq: "documentary"}}, VideoStatus: {videoStatusName: {_eq: "Public"}}}, order_by: {datePublished: desc}, limit: 15) {
     id
     Channel {
       id
@@ -31,7 +31,7 @@ query GetHomeScreenData {
       videoTypeName
     }
   }
-  sermons: Video(where: {VideoType: {videoTypeName: {_eq: "sermon"}}}, order_by: {datePublished: desc}, limit: 15) {
+  sermons: Video(where: {VideoType: {videoTypeName: {_eq: "sermon"}}, VideoStatus: {videoStatusName: {_eq: "Public"}}}, order_by: {datePublished: desc}, limit: 15) {
     id
     Channel {
       id
@@ -49,7 +49,7 @@ query GetHomeScreenData {
       videoTypeName
     }
   }
-  shorts: Video(where: {VideoType: {videoTypeName: {_eq: "short"}}}, order_by: {datePublished: desc}, limit: 15) {
+  shorts: Video(where: {VideoType: {videoTypeName: {_eq: "short"}}, VideoStatus: {videoStatusName: {_eq: "Public"}}}, order_by: {datePublished: desc}, limit: 15) {
     id
     Channel {
       id
@@ -67,7 +67,7 @@ query GetHomeScreenData {
       videoTypeName
     }
   }
-  musicVideos: Video(where: {VideoType: {videoTypeName: {_eq: "music"}}}, order_by: {datePublished: desc}, limit: 15) {
+  musicVideos: Video(where: {VideoType: {videoTypeName: {_eq: "music"}}, VideoStatus: {videoStatusName: {_eq: "Public"}}}, order_by: {datePublished: desc}, limit: 15) {
     id
     Channel {
       id
@@ -85,7 +85,7 @@ query GetHomeScreenData {
       videoTypeName
     }
   }
-  interviews: Video(where: {VideoType: {videoTypeName: {_eq: "interview"}}}, order_by: {datePublished: desc}, limit: 15) {
+  interviews: Video(where: {VideoType: {videoTypeName: {_eq: "interview"}}, VideoStatus: {videoStatusName: {_eq: "Public"}}}, order_by: {datePublished: desc}, limit: 15) {
     id
     Channel {
       id
@@ -106,7 +106,7 @@ query GetHomeScreenData {
 }
 
 query GetVideoDetailData($videoId: String!, $channelId: String!, $userUuid: String!) {
-  videoDetail: Video(where: {id: {_eq: $videoId}}) {
+  videoDetail: Video(where: {id: {_eq: $videoId}, VideoStatus: {videoStatusName: {_eq: "Public"}}}) {
     id
     title
     datePublished
@@ -133,7 +133,7 @@ query GetVideoDetailData($videoId: String!, $channelId: String!, $userUuid: Stri
       videoTypeName
     }
   }
-  moreVideosInChannel: Video(where: {channel: {_eq: $channelId}, id: {_neq: $videoId}}, limit: 10) {
+  moreVideosInChannel: Video(where: {channel: {_eq: $channelId}, id: {_neq: $videoId}, VideoStatus: {videoStatusName: {_eq: "Public"}}}, limit: 10) {
     id
     title
     Channel {
@@ -161,7 +161,7 @@ query GetVideoDetailData($videoId: String!, $channelId: String!, $userUuid: Stri
 }
 
 query GetVideosForSearchText($searchText: String!, $limit: Int!, $offset: Int!) {
-  Video(where: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}]}, limit: $limit, offset: $offset) {
+  Video(where: {VideoStatus: {videoStatusName: {_eq: "Public"}}, _and: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}]}}, limit: $limit, offset: $offset) {
     id
     VideoType {
       videoTypeName
@@ -179,7 +179,7 @@ query GetVideosForSearchText($searchText: String!, $limit: Int!, $offset: Int!) 
     }
     thumbnailUrl
   }
-  Video_aggregate(where: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}]}) {
+  Video_aggregate(where: {VideoStatus: {videoStatusName: {_eq: "Public"}}, _and: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}]}}) {
     aggregate {
       count
     }
@@ -187,7 +187,7 @@ query GetVideosForSearchText($searchText: String!, $limit: Int!, $offset: Int!) 
 }
 
 query GetVideosForSearchTextAndVideoType($searchText: String!, $videoType: String!, $limit: Int!, $offset: Int!) {
-  Video(where: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], VideoType: {videoTypeName: {_eq: $videoType}}}, limit: $limit, offset: $offset) {
+  Video(where: {VideoStatus: {videoStatusName: {_eq: "Public"}}, _and: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], VideoType: {videoTypeName: {_eq: $videoType}}}}, limit: $limit, offset: $offset) {
     id
     VideoType {
       videoTypeName
@@ -205,7 +205,7 @@ query GetVideosForSearchTextAndVideoType($searchText: String!, $videoType: Strin
     }
     thumbnailUrl
   }
-  Video_aggregate(where: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], VideoType: {videoTypeName: {_eq: $videoType}}}) {
+  Video_aggregate(where: {VideoStatus: {videoStatusName: {_eq: "Public"}}, _and: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], VideoType: {videoTypeName: {_eq: $videoType}}}}) {
     aggregate {
       count
     }
@@ -213,7 +213,7 @@ query GetVideosForSearchTextAndVideoType($searchText: String!, $videoType: Strin
 }
 
 query GetVideosForSearchTextAndLanguageCode($searchText: String!, $languageCode: String!, $limit: Int!, $offset: Int!) {
-  Video(where: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], Language: {languageCode: {_eq: $languageCode}}}, limit: $limit, offset: $offset) {
+  Video(where: {VideoStatus: {videoStatusName: {_eq: "Public"}}, _and: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], Language: {languageCode: {_eq: $languageCode}}}}, limit: $limit, offset: $offset) {
     id
     VideoType {
       videoTypeName
@@ -231,7 +231,7 @@ query GetVideosForSearchTextAndLanguageCode($searchText: String!, $languageCode:
     }
     thumbnailUrl
   }
-  Video_aggregate(where: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], Language: {languageCode: {_eq: $languageCode}}}) {
+  Video_aggregate(where: {VideoStatus: {videoStatusName: {_eq: "Public"}}, _and: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], Language: {languageCode: {_eq: $languageCode}}}}) {
     aggregate {
       count
     }
@@ -239,7 +239,7 @@ query GetVideosForSearchTextAndLanguageCode($searchText: String!, $languageCode:
 }
 
 query GetVideosForSearchTextVideoTypeAndLanguageCode($searchText: String!, $videoType: String!, $languageCode: String!, $limit: Int!, $offset: Int!) {
-  Video(where: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], Language: {languageCode: {_eq: $languageCode}}, VideoType: {videoTypeName: {_eq: $videoType}}}, limit: $limit, offset: $offset) {
+  Video(where: {VideoStatus: {videoStatusName: {_eq: "Public"}}, _and: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], Language: {languageCode: {_eq: $languageCode}}, VideoType: {videoTypeName: {_eq: $videoType}}}}, limit: $limit, offset: $offset) {
     id
     VideoType {
       videoTypeName
@@ -257,7 +257,7 @@ query GetVideosForSearchTextVideoTypeAndLanguageCode($searchText: String!, $vide
     }
     thumbnailUrl
   }
-  Video_aggregate(where: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], VideoType: {videoTypeName: {_eq: $videoType}}, Language: {languageCode: {_eq: $languageCode}}}) {
+  Video_aggregate(where: {VideoStatus: {videoStatusName: {_eq: "Public"}}, _and: {_or: [{Channel: {channelName: {_ilike: $searchText}}}, {title: {_ilike: $searchText}}], VideoType: {videoTypeName: {_eq: $videoType}}, Language: {languageCode: {_eq: $languageCode}}}}) {
     aggregate {
       count
     }
@@ -275,7 +275,7 @@ query GetChannelDetail($channelId: String!) {
     locationLong
     regionCode
     websiteUrl
-    videosInChannel: Videos {
+    videosInChannel: Videos(where: {videoStatus: {_eq: "Public"}}) {
       id
       title
       VideoType {
