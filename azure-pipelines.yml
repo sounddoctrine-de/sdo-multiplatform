@@ -20,6 +20,7 @@ steps:
   displayName: 'Install Bundler and Gems'
 
 - script: |
+    cd SDOMultiplatform/fastlane
     bundle exec fastlane ios release
   displayName: 'Build and Upload iOS App via Fastlane'
   env:
