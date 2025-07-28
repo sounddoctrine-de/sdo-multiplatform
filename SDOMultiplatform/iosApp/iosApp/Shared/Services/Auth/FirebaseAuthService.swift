@@ -11,8 +11,7 @@ import GoogleSignIn
 import AuthenticationServices
 import CryptoKit
 
-@MainActor
-class FirebaseAuthService: @MainActor SDOAuthService {
+class FirebaseAuthService: SDOAuthService {
     public static let shared = FirebaseAuthService()
     
     private let googleSignInAuthenticator: GoogleSignInAuthenticator
@@ -29,6 +28,7 @@ class FirebaseAuthService: @MainActor SDOAuthService {
     // MARK: - Methods
     
     /// Restores current user session from keychain if valid
+    @MainActor
     func restorePreviousSignIn() async -> AuthState {
         return await withCheckedContinuation { continuation in
             if let currentUser = Auth.auth().currentUser {
@@ -42,6 +42,7 @@ class FirebaseAuthService: @MainActor SDOAuthService {
     }
     
     /// Signs in user with the Google sign-in (pop-up) and then signs in on Firebase
+    @MainActor
     func signInWithGoogle() async -> AuthState {
         do {
             let user: GIDGoogleUser = try await googleSignInAuthenticator.signIn()
@@ -61,6 +62,7 @@ class FirebaseAuthService: @MainActor SDOAuthService {
     }
     
     /// Configures the Apple sign-in authorization request
+    @MainActor
     func configure(appleSignInAuthorizationRequest request: ASAuthorizationAppleIDRequest) {
         let nonce = randomNonceString()
         currentNonce = nonce
@@ -69,6 +71,7 @@ class FirebaseAuthService: @MainActor SDOAuthService {
     }
     
     /// Uses authorization credentials for from Apple sign-in to sign in on Firebase
+    @MainActor
     func signInWithApple(requestAuthorizationResult result: Result<ASAuthorization, Error>) async -> (AuthState, String?) {
         switch result {
         case let .success(authorization):
@@ -142,6 +145,7 @@ class FirebaseAuthService: @MainActor SDOAuthService {
     }
 
     /// Signs in to firebase as an anonymous user
+    @MainActor
     func signInAnonymously() async -> AuthState {
         do {
             let authDataResult = try await Auth.auth().signInAnonymously()
@@ -155,6 +159,7 @@ class FirebaseAuthService: @MainActor SDOAuthService {
 
     /// Signs in to firebase using the given auth credentials
     /// - note: To be invoked after authenticating with username-password or social sign-in
+    @MainActor
     private func signInOnFirebase(with credential: AuthCredential) async -> AuthState {
         do {
             let authDataResult = try await Auth.auth().signIn(with: credential)
@@ -167,6 +172,7 @@ class FirebaseAuthService: @MainActor SDOAuthService {
     }
     
     /// Signs in user out of all authenticators and firebase
+    @MainActor
     func signOut() -> Bool {
         do {
             googleSignInAuthenticator.signOut()
@@ -179,6 +185,7 @@ class FirebaseAuthService: @MainActor SDOAuthService {
     }
     
     /// Deletes the user account from the authentication provider
+    @MainActor
     func deleteAccount() async -> Bool {
         do {
             guard let currentUser = Auth.auth().currentUser else {
@@ -195,6 +202,7 @@ class FirebaseAuthService: @MainActor SDOAuthService {
     }
     
     /// Gets a list of all social accounts connected to the user
+    @MainActor
     func getConnectedSocialAccounts() -> [SDOUserInfo] {
         return Auth.auth().currentUser?.providerData.map({ userInfo in
             SDOUserInfo(providerId: userInfo.providerID)

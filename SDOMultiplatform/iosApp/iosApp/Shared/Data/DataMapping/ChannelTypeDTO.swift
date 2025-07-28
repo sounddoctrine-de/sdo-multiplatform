@@ -11,17 +11,6 @@ enum ChannelTypeDTO: String {
     case soulWinningClub
     case church
     
-    init(rawValue: String) throws {
-        switch rawValue {
-        case "soulWinningClub":
-            self = .soulWinningClub
-        case "church":
-            self = .church
-        default:
-            AppLogger.error("Unexpectedly got invalid option for ChannelTypeDTO: \(rawValue)")
-            throw BusinessErrors.parsingError()
-        }
-    }
     
     init(channelType: ChannelTypeData) {
         switch channelType {

@@ -19,14 +19,15 @@ extension GetAllChannelsQuery.Data.Channel {
     func toEntity() throws -> GetChannelsData.ChannelData {
         guard let latitude = Double(locationLat),
               let longitude = Double(locationLong),
-              let channelType
+              let channelType,
+              let channelTypeDto = ChannelTypeDTO(rawValue: channelType.channelTypeCode)
         else {
             throw BusinessErrors.parsingError()
         }
         return GetChannelsData.ChannelData(
             channelId: id,
             channelName: channelName,
-            type: try ChannelTypeDTO(rawValue: channelType.channelTypeCode).toEntity(),
+            type: channelTypeDto.toEntity(),
             location: GetChannelsData.ChannelData.Location(
                 latitude: latitude,
                 longitude: longitude

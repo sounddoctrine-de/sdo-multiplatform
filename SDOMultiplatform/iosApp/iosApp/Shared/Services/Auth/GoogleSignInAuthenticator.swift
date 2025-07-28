@@ -9,7 +9,7 @@ import SwiftUI
 import GoogleSignIn
 
 /// An observable class for authenticating via Google.
-@MainActor final class GoogleSignInAuthenticator: ObservableObject {
+final class GoogleSignInAuthenticator: ObservableObject {
     #if os(iOS)
     private let clientID = "339443240109-d0v5vs4eqg7s9okddajsh6qbkfh9h6u8.apps.googleusercontent.com"
     #elseif os(macOS)
@@ -24,7 +24,7 @@ import GoogleSignIn
     /// - note: Successful calls to this will return the `GIDGoogleUser`
     func signIn() async throws -> GIDGoogleUser {
     #if os(iOS)
-        guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController else {
+        guard let rootViewController = await UIApplication.shared.keyWindow?.rootViewController else {
             throw BusinessErrors.clientError()
         }
         return try await withCheckedThrowingContinuation { continuation in

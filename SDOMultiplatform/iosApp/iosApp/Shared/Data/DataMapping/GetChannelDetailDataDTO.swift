@@ -13,14 +13,15 @@ extension GetChannelDetailQuery.Data {
               let latitude = Double(channel.locationLat),
               let longitude = Double(channel.locationLong),
               let websiteUrl = URL(string: channel.websiteUrl),
-              let channelType = channel.channelType
+              let channelType = channel.channelType,
+              let channelTypeDto = ChannelTypeDTO(rawValue: channelType.channelTypeCode)
         else {
             throw BusinessErrors.parsingError()
         }
         return ChannelDetailData(
             channelId: channel.id,
             channelName: channel.channelName,
-            channelType: try ChannelTypeDTO(rawValue: channelType.channelTypeCode).toEntity(),
+            channelType: channelTypeDto.toEntity(),
             location: ChannelDetailData.Location(
                 latitude: latitude,
                 longitude: longitude
