@@ -15,7 +15,7 @@ steps:
 
 - script: |
     gem install bundler
-    cd fastlane
+    cd SDOMultiplatform/fastlane
     bundle install
   displayName: 'Install Bundler and Gems'
 
