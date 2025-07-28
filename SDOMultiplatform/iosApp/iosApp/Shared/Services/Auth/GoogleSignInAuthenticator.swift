@@ -9,7 +9,7 @@ import SwiftUI
 import GoogleSignIn
 
 /// An observable class for authenticating via Google.
-final class GoogleSignInAuthenticator: ObservableObject {
+@MainActor final class GoogleSignInAuthenticator: ObservableObject {
     #if os(iOS)
     private let clientID = "339443240109-d0v5vs4eqg7s9okddajsh6qbkfh9h6u8.apps.googleusercontent.com"
     #elseif os(macOS)
@@ -24,7 +24,7 @@ final class GoogleSignInAuthenticator: ObservableObject {
     /// - note: Successful calls to this will return the `GIDGoogleUser`
     func signIn() async throws -> GIDGoogleUser {
     #if os(iOS)
-        guard let rootViewController = await UIApplication.shared.keyWindow?.rootViewController else {
+        guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController else {
             throw BusinessErrors.clientError()
         }
         return try await withCheckedThrowingContinuation { continuation in
@@ -33,11 +33,8 @@ final class GoogleSignInAuthenticator: ObservableObject {
                     continuation.resume(with: .failure(BusinessErrors.clientError()))
                     return
                 }
-                GIDSignIn.sharedInstance.signIn(
-                    with: self.configuration,
-                    presenting: rootViewController
-                ) { user, error in
-                    guard let user = user else {
+                GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController) { signInResult, error in
+                    guard let user = signInResult?.user else {
                         AppLogger.error(String(describing: error))
                         continuation.resume(with: .failure(BusinessErrors.serverError()))
                         return
@@ -78,3 +75,4 @@ final class GoogleSignInAuthenticator: ObservableObject {
         GIDSignIn.sharedInstance.signOut()
     }
 }
+

@@ -11,19 +11,20 @@ import GoogleSignIn
 import AuthenticationServices
 import CryptoKit
 
-class FirebaseAuthService: SDOAuthService {
+@MainActor
+class FirebaseAuthService: @MainActor SDOAuthService {
     public static let shared = FirebaseAuthService()
     
-    private init() {}
+    private let googleSignInAuthenticator: GoogleSignInAuthenticator
+    
+    private init() {
+        self.googleSignInAuthenticator = GoogleSignInAuthenticator()
+    }
     
     // MARK: - Properties
     
     // Unhashed nonce.
     private var currentNonce: String?
-    
-    private var googleSignInAuthenticator: GoogleSignInAuthenticator {
-      return GoogleSignInAuthenticator()
-    }
     
     // MARK: - Methods
     
@@ -44,13 +45,13 @@ class FirebaseAuthService: SDOAuthService {
     func signInWithGoogle() async -> AuthState {
         do {
             let user: GIDGoogleUser = try await googleSignInAuthenticator.signIn()
-            let authentication = user.authentication
-            guard let idToken = authentication.idToken else {
+            guard let idToken = user.idToken?.tokenString else {
                 return .signedOut
             }
+            let accessToken = user.accessToken.tokenString
             let credential = GoogleAuthProvider.credential(
                 withIDToken: idToken,
-                accessToken: authentication.accessToken
+                accessToken: accessToken
             )
             return await signInOnFirebase(with: credential)
         } catch {
@@ -110,11 +111,11 @@ class FirebaseAuthService: SDOAuthService {
                 }
                 
                 // Initialize a Firebase credential.
-                let credential = OAuthProvider.credential(
-                    withProviderID: "apple.com",
-                    idToken: idTokenString,
-                    rawNonce: nonce
-                )
+                var personNameComponents: PersonNameComponents? = nil
+                if let displayName {
+                    personNameComponents = try? PersonNameComponents(displayName)
+                }
+                let credential = OAuthProvider.appleCredential(withIDToken: idTokenString, rawNonce: nonce, fullName: personNameComponents)
                 
                 // Check and return Apple authorization code
                 var codeString: String?
@@ -251,3 +252,4 @@ extension FirebaseAuthService {
       return hashString
     }
 }
+
