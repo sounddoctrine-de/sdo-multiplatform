@@ -8,13 +8,13 @@
 import Foundation
 import ComposeApp
 
-struct VideoDetailData {
-    struct SpeakerData {
+struct VideoDetailData: Hashable {
+    struct SpeakerData: Hashable, Equatable {
         let speakerId: String
         let speakerName: String
     }
     
-    struct RelatedVideo: Identifiable, ThumbnailableVideo {
+    struct RelatedVideo: Identifiable, ThumbnailableVideo, Hashable {
         var id: UUID {
             return UUID(uuidString: videoId) ?? UUID()
         }
@@ -28,7 +28,7 @@ struct VideoDetailData {
         let thumbnailURL: URL
     }
     
-    struct InfoData {
+    struct InfoData: Hashable {
         let videoId: String
         let title: String
         let videoType: VideoType

@@ -18,12 +18,7 @@ struct VideoInChannelRow: View {
 
     var body: some View {
         HStack {
-            NavigationLink {
-                VideoDetailView(
-                    videoId: video.videoId,
-                    channelId: video.channelId
-                )
-            } label: {
+            NavigationLink(value: video) {
                 HStack {
                     Spacer()
                         .frame(width: 20)

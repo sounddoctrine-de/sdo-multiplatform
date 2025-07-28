@@ -11,15 +11,10 @@ import ComposeApp
 struct SearchTabView: View {
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     @Binding var tabSelection: Tab
+    @Binding var path: NavigationPath
     
     @State private var searchText = ""
     @StateObject var searchTabViewModel = SearchTabViewModel()
-    @State private var showAllResultView = false
-    @State private var showSermonsResultView = false
-    @State private var showDocumentariesResultView = false
-    @State private var showShortsResultView = false
-    @State private var showMusicResultView = false
-    @State private var showInterviewsResultView = false
     
     @State private var isOnLoadedInvoked = false
     
@@ -27,11 +22,6 @@ struct SearchTabView: View {
         Group {
             if searchTabViewModel.onPageLoaded {
                 ScrollView {
-                    NavigationLink(
-                        destination: SearchResultView(ofItemType: .all, searchText: searchText, language: LanguageData.Companion().invoke()),
-                        isActive: $showAllResultView) {
-                            EmptyView()
-                        }
                     VStack {
                         HStack {
                             Text("searchBrowseLabel")
@@ -44,48 +34,48 @@ struct SearchTabView: View {
                         
                         VStack {
                             HStack {
-                                NavigationLink(
-                                    destination: SearchResultView(ofItemType: .sermons, language: LanguageData.Companion().invoke()),
-                                    isActive: $showSermonsResultView) {
-                                    TileButton(text: "searchSermonsButtonLabel", imageName: "sermons") {
-                                        showSermonsResultView = true
-                                    }
+                                TileButton(text: "searchSermonsButtonLabel", imageName: "sermons") {
+                                    path.append(
+                                        SearchQueryData(
+                                            itemType: .sermons, language: LanguageData.Companion().invoke()
+                                        )
+                                    )
                                 }
                                 Spacer()
-                                NavigationLink(
-                                    destination: SearchResultView(ofItemType: .documentaries, language: LanguageData.Companion().invoke()),
-                                    isActive: $showDocumentariesResultView) {
-                                    TileButton(text: "searchDocumentariesButtonLabel", imageName: "documentaries") {
-                                        showDocumentariesResultView = true
-                                    }
+                                TileButton(text: "searchDocumentariesButtonLabel", imageName: "documentaries") {
+                                    path.append(
+                                        SearchQueryData(
+                                            itemType: .documentaries, language: LanguageData.Companion().invoke()
+                                        )
+                                    )
                                 }
                             }
                             .padding(.horizontal, 10)
                             HStack {
-                                NavigationLink(
-                                    destination: SearchResultView(ofItemType: .shorts, language: LanguageData.Companion().invoke()),
-                                    isActive: $showShortsResultView) {
-                                    TileButton(text: "searchShortsButtonLabel", imageName: "shorts") {
-                                        showShortsResultView = true
-                                    }
+                                TileButton(text: "searchShortsButtonLabel", imageName: "shorts") {
+                                    path.append(
+                                        SearchQueryData(
+                                            itemType: .shorts, language: LanguageData.Companion().invoke()
+                                        )
+                                    )
                                 }
                                 Spacer()
-                                NavigationLink(
-                                    destination: SearchResultView(ofItemType: .music, language: LanguageData.Companion().invoke()),
-                                    isActive: $showMusicResultView) {
-                                    TileButton(text: "searchMusicButtonLabel", imageName: "music") {
-                                        showMusicResultView = true
-                                    }
+                                TileButton(text: "searchMusicButtonLabel", imageName: "music") {
+                                    path.append(
+                                        SearchQueryData(
+                                            itemType: .music, language: LanguageData.Companion().invoke()
+                                        )
+                                    )
                                 }
                             }
                             .padding(.horizontal, 10)
                             HStack {
-                                NavigationLink(
-                                    destination: SearchResultView(ofItemType: .interviews, language: LanguageData.Companion().invoke()),
-                                    isActive: $showInterviewsResultView) {
-                                    TileButton(text: "searchInterviewsButtonLabel", imageName: "interviews") {
-                                        showInterviewsResultView = true
-                                    }
+                                TileButton(text: "searchInterviewsButtonLabel", imageName: "interviews") {
+                                    path.append(
+                                        SearchQueryData(
+                                            itemType: .interviews, language: LanguageData.Companion().invoke()
+                                        )
+                                    )
                                 }
                                 Spacer()
                                 TileButton(text: "searchChannelsButtonLabel", imageName: "channels") {
@@ -109,9 +99,7 @@ struct SearchTabView: View {
                             
                             VStack {
                                 ForEach(searchTabViewModel.languages, id: \.self) { language in
-                                    NavigationLink {
-                                        SearchResultView(ofItemType: .all, language: language)
-                                    } label: {
+                                    NavigationLink(value: language) {
                                         VStack {
                                             HStack {
                                                 Text(language.sourceCountryFlag)
@@ -140,7 +128,27 @@ struct SearchTabView: View {
                         prompt: "searchBarPlaceholderLabel")
                     .navigationBarTitle(Text("searchScreenTitle", comment: "Label: Navigation bar title of Search Screen"))
                     .onSubmit(of: .search) {
-                        showAllResultView = true
+                        path.append(
+                            SearchQueryData(
+                                itemType: .sermons, searchText: searchText, language: LanguageData.Companion().invoke()
+                            )
+                        )
+                    }
+                    .navigationDestination(for: SearchQueryData.self, destination: { queryData in
+                        SearchResultView(ofItemType: queryData.itemType, searchText: queryData.searchText, language: queryData.language, path: $path)
+                    })
+                    .navigationDestination(for: SearchResultData.Video.self) { video in
+                        VideoDetailView(videoId: video.videoId, channelId: video.channelId, path: $path)
+                    }
+                    .navigationDestination(for: LanguageData.self) { language in
+                        SearchResultView(ofItemType: .all, language: language, path: $path)
+                    }
+                    .navigationDestination(for: HomeScreenData.HomeVideo.self) { video in
+                        VideoDetailView(
+                            videoId: video.videoId,
+                            channelId: video.channelId,
+                            path: $path
+                        )
                     }
                 }
             } else {
@@ -161,6 +169,6 @@ struct SearchTabView: View {
 
 struct SearchTabView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchTabView(tabSelection: Binding.constant(.Search))
+        SearchTabView(tabSelection: Binding.constant(.Search), path: Binding.constant(NavigationPath()))
     }
 }

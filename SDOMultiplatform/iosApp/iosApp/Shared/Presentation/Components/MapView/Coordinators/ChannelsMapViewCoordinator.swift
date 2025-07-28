@@ -45,8 +45,13 @@ class ChannelsMapViewCoordinator: NSObject, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let annotation = view.annotation as? GetChannelsData.ChannelData  {
-            parent.selectedChannelIdForShowDetail = annotation.channelId
-            parent.showChannelDetail = true
+            parent.onChannelSelected(
+                ChannelData(
+                    channelId: annotation.channelId,
+                    channelName: annotation.channelName,
+                    channelType: annotation.type
+                )
+            )
         }
     }
     

@@ -29,7 +29,7 @@ struct TopVideoPreview: View {
     @ObservedObject var topVideoPreviewViewModel: TopVideoPreviewViewModel
     @State var showMoreSheet: Bool = false
     
-    init(video: TopPreviewableVideo & PlayableVideo) {
+    init(video: any TopPreviewableVideo & PlayableVideo & Hashable) {
         self.topVideoPreviewViewModel = TopVideoPreviewViewModel(video: video)
     }
     

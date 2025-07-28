@@ -10,9 +10,9 @@ import SwiftUI
 import AVFoundation
 
 class TopVideoPreviewViewModel: ObservableObject {
-    @Published var video: TopPreviewableVideo & PlayableVideo
+    @Published var video: any TopPreviewableVideo & PlayableVideo & Hashable
     
-    init(video: TopPreviewableVideo & PlayableVideo) {
+    init(video: any TopPreviewableVideo & PlayableVideo & Hashable) {
         self.video = video
     }
     

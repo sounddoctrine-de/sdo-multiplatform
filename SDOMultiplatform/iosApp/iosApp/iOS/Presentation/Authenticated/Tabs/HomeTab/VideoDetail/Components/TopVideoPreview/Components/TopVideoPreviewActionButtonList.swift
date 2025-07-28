@@ -25,13 +25,10 @@ struct TopVideoPreviewActionButtonList: View {
                     }
                     .frame(width: 250)
 
-                    NavigationLink(isActive: $showVideoPlayerView) {
-                        VideoPlayerView(video: topVideoPreviewViewModel.video)
-                    } label: {
-                        EmptyView()
-                    }
-
                     Spacer()
+                }
+                .navigationDestination(isPresented: $showVideoPlayerView) {
+                    VideoPlayerView(video: topVideoPreviewViewModel.video)
                 }
             } else {
                 if let subscription = topVideoPreviewViewModel.video.subscriptionForWatching {

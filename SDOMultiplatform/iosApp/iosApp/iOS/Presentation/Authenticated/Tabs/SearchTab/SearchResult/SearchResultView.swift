@@ -11,17 +11,20 @@ import ComposeApp
 struct SearchResultView: View {
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     @ObservedObject var searchResultViewModel: SearchResultViewModel
+    @Binding var path: NavigationPath
     
     init(
         ofItemType itemType: SearchResultItemType,
         searchText: String? = nil,
-        language: LanguageData
+        language: LanguageData,
+        path: Binding<NavigationPath>
     ) {
         self.searchResultViewModel = SearchResultViewModel(
             searchResultItemType: itemType,
             searchText: searchText,
             language: language
         )
+        self._path = path
         AppLogger.initLog()
     }
     
@@ -63,7 +66,7 @@ struct SearchResultView: View {
                         }
                         
                         ForEach(searchResultViewModel.searchResultVideos) { video in
-                            SearchResultRow(video: video)
+                            SearchResultRow(video: video, path: $path)
                         }
                         .padding(.leading, 20)
                     }
@@ -94,6 +97,6 @@ struct SearchResultView: View {
 
 struct SearchResultView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResultView(ofItemType: .all, language: LanguageData.Companion().invoke())
+        SearchResultView(ofItemType: .all, language: LanguageData.Companion().invoke(), path: Binding.constant(NavigationPath()))
     }
 }

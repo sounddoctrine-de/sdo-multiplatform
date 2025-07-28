@@ -13,13 +13,13 @@ struct ChannelDetailData {
         let longitude: Double
     }
     
-    struct Video: Identifiable {
-        struct Speaker: Equatable {
+    struct Video: Identifiable, Hashable {
+        struct Speaker: Equatable, Hashable {
             let speakerId: String
             let speakerName: String
         }
         
-        struct Language: Equatable {
+        struct Language: Equatable, Hashable {
             let languageCode: String
             let sourceCountryFlag: String
             

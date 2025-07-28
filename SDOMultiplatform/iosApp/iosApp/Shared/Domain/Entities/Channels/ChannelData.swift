@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChannelData {
+struct ChannelData: Hashable {
     let channelId: String
     let channelName: String
     let channelType: ChannelTypeData

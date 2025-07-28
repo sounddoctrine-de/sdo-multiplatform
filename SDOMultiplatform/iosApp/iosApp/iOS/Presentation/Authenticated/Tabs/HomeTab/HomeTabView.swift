@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeTabView: View {
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     @ObservedObject var homeTabViewModel = HomeTabViewModel()
+    @Binding var path: NavigationPath
     
     var body: some View {
         if let homeScreenData = homeTabViewModel.homeScreenData {
@@ -17,13 +18,14 @@ struct HomeTabView: View {
             case let .success(data):
                 VStack {
                     ScrollView(.vertical, showsIndicators: false) {
-                        LazyVStack {
+                        VStack {
                             if !data.documentaries.isEmpty {
                                 HomeVideosRow(
                                     title: "homeDocumentariesLabel",
                                     videoThumbnailStyle: .small,
                                     videos: data.documentaries,
-                                    showAllItemType: .documentaries
+                                    showAllItemType: .documentaries,
+                                    path: $path
                                 )
                             }
                             if !data.sermons.isEmpty {
@@ -31,7 +33,8 @@ struct HomeTabView: View {
                                     title: "homeSermonsLabel",
                                     videoThumbnailStyle: .small,
                                     videos: data.sermons,
-                                    showAllItemType: .sermons
+                                    showAllItemType: .sermons,
+                                    path: $path
                                 )
                             }
                             if !data.shorts.isEmpty {
@@ -39,7 +42,8 @@ struct HomeTabView: View {
                                     title: "homeShortsLabel",
                                     videoThumbnailStyle: .small,
                                     videos: data.shorts,
-                                    showAllItemType: .shorts
+                                    showAllItemType: .shorts,
+                                    path: $path
                                 )
                             }
                             if !data.musicVideos.isEmpty {
@@ -47,7 +51,8 @@ struct HomeTabView: View {
                                     title: "homeMusicLabel",
                                     videoThumbnailStyle: .small,
                                     videos: data.musicVideos,
-                                    showAllItemType: .music
+                                    showAllItemType: .music,
+                                    path: $path
                                 )
                             }
                             if !data.interviews.isEmpty {
@@ -55,7 +60,8 @@ struct HomeTabView: View {
                                     title: "homeInterviewsLabel",
                                     videoThumbnailStyle: .small,
                                     videos: data.interviews,
-                                    showAllItemType: .interviews
+                                    showAllItemType: .interviews,
+                                    path: $path
                                 )
                             }
                         }
@@ -66,6 +72,13 @@ struct HomeTabView: View {
                 }
                 .edgesIgnoringSafeArea(.horizontal)
                 .navigationBarTitle(Text("homeScreenTitle", comment: "Label: Navigation bar title of Home Screen"))
+                .navigationDestination(for: HomeScreenData.HomeVideo.self) { video in
+                    VideoDetailView(
+                        videoId: video.videoId,
+                        channelId: video.channelId,
+                        path: $path
+                    )
+                }
             case let .failure(error):
                 CustomErrorView(
                     error: error,
@@ -85,6 +98,6 @@ struct HomeTabView: View {
 
 struct HomeTabView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeTabView()
+        HomeTabView(path: Binding.constant(NavigationPath()))
     }
 }
