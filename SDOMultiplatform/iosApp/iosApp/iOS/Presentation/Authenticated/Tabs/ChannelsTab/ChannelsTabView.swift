@@ -92,6 +92,13 @@ struct ChannelsTabView: View {
                     path: $path
                 )
             }
+            .navigationDestination(for: HomeScreenData.HomeVideo.self) { video in
+                VideoDetailView(
+                    videoId: video.videoId,
+                    channelId: video.channelId,
+                    path: $path
+                )
+            }
         case .failure(let error):
             CustomErrorView(
                 error: error,

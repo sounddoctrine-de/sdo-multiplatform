@@ -76,13 +76,6 @@ struct HomeVideosRow: View {
                 }
             }
         }
-        .navigationDestination(for: HomeScreenData.HomeVideo.self) { video in
-            VideoDetailView(
-                videoId: video.videoId,
-                channelId: video.channelId,
-                path: $path
-            )
-        }
     }
 }
 

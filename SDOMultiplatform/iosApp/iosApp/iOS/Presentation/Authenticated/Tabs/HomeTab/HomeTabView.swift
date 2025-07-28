@@ -72,6 +72,13 @@ struct HomeTabView: View {
                 }
                 .edgesIgnoringSafeArea(.horizontal)
                 .navigationBarTitle(Text("homeScreenTitle", comment: "Label: Navigation bar title of Home Screen"))
+                .navigationDestination(for: HomeScreenData.HomeVideo.self) { video in
+                    VideoDetailView(
+                        videoId: video.videoId,
+                        channelId: video.channelId,
+                        path: $path
+                    )
+                }
             case let .failure(error):
                 CustomErrorView(
                     error: error,

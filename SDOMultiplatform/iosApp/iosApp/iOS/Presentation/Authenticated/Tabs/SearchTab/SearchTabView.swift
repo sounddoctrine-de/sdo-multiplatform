@@ -143,6 +143,13 @@ struct SearchTabView: View {
                     .navigationDestination(for: LanguageData.self) { language in
                         SearchResultView(ofItemType: .all, language: language, path: $path)
                     }
+                    .navigationDestination(for: HomeScreenData.HomeVideo.self) { video in
+                        VideoDetailView(
+                            videoId: video.videoId,
+                            channelId: video.channelId,
+                            path: $path
+                        )
+                    }
                 }
             } else {
                 ProgressView("progressViewLoadingLabel")
