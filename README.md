@@ -45,8 +45,6 @@ This is a Kotlin Multiplatform project that supports multiple platforms:
 
 ## Running the Multiplatform App
 
-## Running the Multiplatform App
-
 ### Prerequisites
 - [Android Studio](https://developer.android.com/studio) or [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 - JDK 11 or later
