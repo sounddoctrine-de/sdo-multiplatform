@@ -8,7 +8,7 @@
   </a>
 </p>
 
-SDO Apple is the Apple ecosystem client for Sound Doctrine Online ([sounddoctrine.online](https://sounddoctrine.online)) currently supporting iPhones with iOS 16 and above.
+SDO Apple is the Apple ecosystem client for Sound Doctrine Online ([sounddoctrine.online](https://sounddoctrine.online)). This repository contains both the original iOS/macOS Xcode project and a new Kotlin Multiplatform project that supports iOS, Android, and Desktop platforms.
 
 <p align="center">
   <a href="https://apps.apple.com/in/app/sound-doctrine-online/id6443919279">
@@ -25,7 +25,25 @@ The aim of Sound Doctrine Online is to make Hard Preaching from across the world
 
 ---
 
-## Running the App (Development)
+## Project Structure
+
+This repository contains two main projects:
+
+### 1. Original iOS/macOS Project (Xcode)
+- **Location**: Root directory (`SDO.xcodeproj`)
+- **Platforms**: iOS 16+, macOS 11.0+
+- **Technology**: Swift, SwiftUI
+- **Status**: Legacy project, being migrated to Kotlin Multiplatform
+
+### 2. Kotlin Multiplatform Project (Compose Multiplatform)
+- **Location**: `SDOMultiplatform/` directory  
+- **Platforms**: iOS, Android, Desktop (macOS/Windows/Linux), Web (Wasm)
+- **Technology**: Kotlin Multiplatform, Compose Multiplatform
+- **Status**: Active development
+
+---
+
+## Running the iOS/macOS App (Xcode Project)
 
 ### Prerequisites
 - [Xcode](https://developer.apple.com/xcode/) 13 or later (recommended: latest version)
@@ -48,10 +66,67 @@ The aim of Sound Doctrine Online is to make Hard Preaching from across the world
 5. **Build and run:**
    - Click the ▶️ (Run) button in Xcode, or press `Cmd+R`.
 
+
+### Environment Variables (Xcode Project)
+
+To provide local environment variables (such as API endpoints or keys) to the Xcode project, create a `UserEnvironmentVariables.plist` file:
+
+1. **Location:**
+   - `iosApp.xcodeproj/xcuserdata/<your-username>.xcuserdatad/UserEnvironmentVariables.plist`
+2. **Format:**
+   - The file should be a property list (`.plist`) with each variable as a key-value pair. Example:
+
+     ```xml
+     <?xml version="1.0" encoding="UTF-8"?>
+     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+     <plist version="1.0">
+     <dict>
+         <key>HASURA_ENDPOINT</key>
+         <string>https://sdo-prod.hasura.app/v1/graphql</string>
+         <key>HASURA_ACCESS_KEY</key>
+         <string>YOUR_ACCESS_KEY_HERE</string>
+     </dict>
+     </plist>
+     ```
+3. **Notes:**
+   - This file is user-specific and should not be committed to version control.
+   - Add any required environment variables for your local development.
+
+---
 ### Notes
 - For iOS, the app supports iOS 16 and above.
 - For macOS, the app supports macOS 11.0 and above.
 - You may need to set up signing with your Apple ID in Xcode for device deployment.
+
+---
+
+## Running the Multiplatform App (Kotlin/Compose)
+
+### Prerequisites
+- [Android Studio](https://developer.android.com/studio) or [IntelliJ IDEA](https://www.jetbrains.com/idea/)
+- JDK 11 or later
+- For iOS development: Xcode and macOS
+- For Android development: Android SDK
+
+### Steps
+1. **Navigate to the multiplatform project:**
+   ```sh
+   cd SDOMultiplatform
+   ```
+
+2. **Open the project:**
+   - Open `SDOMultiplatform` folder in Android Studio or IntelliJ IDEA
+
+3. **Run the app:**
+   - **Android**: Select `composeApp` configuration and run
+   - **iOS**: Select `iosApp` configuration and run (requires macOS and Xcode)
+   - **Desktop**: Select `desktopApp` configuration and run
+   - **Web**: Run `./gradlew wasmJsBrowserRun`
+
+### Notes
+- The multiplatform project shares business logic and UI across all platforms
+- Platform-specific code is organized in respective source sets
+- See `SDOMultiplatform/README.md` for detailed setup instructions
 
 ---
 
@@ -69,12 +144,12 @@ codeql database create ./databases/swift-database \
   --command="xcodebuild build -project SDO.xcodeproj -scheme \"SDO (iOS)\""
 ```
 
-### Running CodeQL Queries
-
-You can use the custom queries provided in the `queries/codeql-custom-queries-swift/` folder. For example, to run a query:
+**For the Kotlin Multiplatform project:**
 
 ```sh
-codeql query run --database=./databases/swift-database queries/codeql-custom-queries-swift/example.ql
+codeql database create ./databases/kotlin-database \
+  --language=java \
+  --command="cd SDOMultiplatform && ./gradlew compileKotlin"
 ```
 
 Refer to the [CodeQL documentation](https://codeql.github.com/docs/codeql-cli/) for more details on advanced usage.
