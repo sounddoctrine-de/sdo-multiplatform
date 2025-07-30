@@ -8,7 +8,7 @@
   </a>
 </p>
 
-SDO Apple is the Apple ecosystem client for Sound Doctrine Online ([sounddoctrine.online](https://sounddoctrine.online)). This repository contains both the original iOS/macOS Xcode project and a new Kotlin Multiplatform project that supports iOS, Android, and Desktop platforms.
+SDO Multiplatform is the multiplatform client for Sound Doctrine Online ([sounddoctrine.online](https://sounddoctrine.online)). This repository contains the original iOS/macOS Xcode project integrated into a new Kotlin Multiplatform project structure that supports iOS, Android, and Desktop platforms.
 
 <p align="center">
   <a href="https://apps.apple.com/in/app/sound-doctrine-online/id6443919279">
@@ -37,7 +37,7 @@ This repository contains two main projects:
 
 ### 2. Kotlin Multiplatform Project (Compose Multiplatform)
 - **Location**: `SDOMultiplatform/` directory  
-- **Platforms**: iOS, Android, Desktop (macOS/Windows/Linux), Web (Wasm)
+- **Platforms**: iOS 1, Android, Desktop (macOS/Windows/Linux), Web (Wasm)
 - **Technology**: Kotlin Multiplatform, Compose Multiplatform
 - **Status**: Active development
 
