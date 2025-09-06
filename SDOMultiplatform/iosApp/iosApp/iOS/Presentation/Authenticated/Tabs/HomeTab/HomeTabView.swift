@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ComposeApp
 
 struct HomeTabView: View {
     @EnvironmentObject var authViewModel: AuthenticationViewModel
@@ -79,6 +80,9 @@ struct HomeTabView: View {
                         path: $path
                     )
                 }
+                .navigationDestination(for: SearchResultItemType.self, destination: { itemType in
+                    SearchResultView(ofItemType: itemType, language: LanguageData.Companion().invoke(), path: $path)
+                })
             case let .failure(error):
                 CustomErrorView(
                     error: error,

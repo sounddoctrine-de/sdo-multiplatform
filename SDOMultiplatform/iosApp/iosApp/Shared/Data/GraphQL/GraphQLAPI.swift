@@ -5665,7 +5665,9 @@ public final class GetChannelDetailQuery: GraphQLQuery {
         locationLong
         regionCode
         websiteUrl
-        videosInChannel: Videos(where: {videoStatus: {_eq: "Public"}}) {
+        videosInChannel: Videos(
+          where: {VideoStatus: {videoStatusName: {_eq: "Public"}}}
+        ) {
           __typename
           id
           title
@@ -5748,7 +5750,7 @@ public final class GetChannelDetailQuery: GraphQLQuery {
           GraphQLField("locationLong", type: .nonNull(.scalar(String.self))),
           GraphQLField("regionCode", type: .nonNull(.scalar(String.self))),
           GraphQLField("websiteUrl", type: .nonNull(.scalar(String.self))),
-          GraphQLField("Videos", alias: "videosInChannel", arguments: ["where": ["videoStatus": ["_eq": "Public"]]], type: .nonNull(.list(.nonNull(.object(VideosInChannel.selections))))),
+          GraphQLField("Videos", alias: "videosInChannel", arguments: ["where": ["VideoStatus": ["videoStatusName": ["_eq": "Public"]]]], type: .nonNull(.list(.nonNull(.object(VideosInChannel.selections))))),
         ]
       }
 

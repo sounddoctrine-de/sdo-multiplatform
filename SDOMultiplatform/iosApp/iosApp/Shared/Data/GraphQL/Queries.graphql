@@ -275,7 +275,7 @@ query GetChannelDetail($channelId: String!) {
     locationLong
     regionCode
     websiteUrl
-    videosInChannel: Videos(where: {videoStatus: {_eq: "Public"}}) {
+    videosInChannel: Videos(where: {VideoStatus: {videoStatusName: {_eq: "Public"}}}) {
       id
       title
       VideoType {
